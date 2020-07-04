@@ -212,6 +212,10 @@ button:hover, input[type=submit]:hover, input[type=button]:hover, .btn:hover {
   background-color: #6D63EC !important;
 }
 
+.ie-form {
+  display: inline-block;
+}
+
 /* Content Publish & Editor */
 .content-form {
   display: grid;
@@ -511,6 +515,7 @@ ul.pagination {
 /* Misc */
 .cc {
   font-size: small;
+  font-style: italic;
 }
 
 .hide {

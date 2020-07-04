@@ -1,6 +1,6 @@
 <?php
 // Change this to 0 on production!
-$dev_mode = 0;
+$dev_mode = 1;
 
 // Dev Dumps:
 error_reporting(0);
@@ -53,8 +53,12 @@ if ((http_response_code() == '404')) {
 
 // Dev Mode.
 if ($dev_mode == 1) {
+
   
-  echo '<style>
+  $dev_msg = 'Development mode is on! Change it in the index.php file before going to production.';
+  if(strpos($_SERVER['REQUEST_URI'], 'login') !== false){
+
+    echo '<style>
     .dev-mode {
       position: fixed;
       display: block;
@@ -68,9 +72,8 @@ if ($dev_mode == 1) {
       font-size: medium;
     }
   </style>';
-  
-  $dev_msg = 'Development mode is on! Change it in the index.php file before going to production.';
-  if(strpos($_SERVER['REQUEST_URI'], 'login') !== false){
+
+
     if ($_SESSION['auth']['login_token']) {
       echo '<div class="dev-mode">';
       echo '<div>Login Code:<br>' . $_SESSION['auth']['login_token'] . '</div>';

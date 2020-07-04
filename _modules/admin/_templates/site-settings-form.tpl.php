@@ -5,7 +5,7 @@
 <form method="post" enctype="multipart/form-data">
   <div class="page-well">
   <details>
-    <summary><b>General Info: </b></summary>
+    <summary><b>General: </b></summary>
     <br>
     <div class="page-content">
       <label for="site_name">Site Name:</label>
@@ -23,6 +23,7 @@
       <label for="blog_name">Blog Title:</label>
       <input id="blog_name" type="text" placeholder="Blog Name" name="blog_name" value="<?php if (isset($page_data['blog_name'])) { echo $page_data['blog_name']; } else { echo 'blog'; }?>" required>
       <div class="cc">Blog Path: <a href="<?php echo Siteinfo::baseUrl() . $page_data['blog_path']; ?>"><?php echo $page_data['blog_path']; ?></a></div>
+
     </div>
   </div>
   </details>
@@ -77,6 +78,17 @@
       
       </div>
   </div>
+  </details>
+  <br>
+
+  <div class="page-well">
+  <details>
+    <summary><b>Headless CMS Settings</b></summary>
+      <br>
+      <p>Mark the checkbox below to enable headless mode and bypass the default template system.</p>
+      <input class="ie-form" type="checkbox" id="headless" name="headless" value="enabled" <?php if (isset($page_data['headless'])){ if ($page_data['headless'] == 'enabled') { echo 'checked'; } }?>>
+      <label class="ie-form" for="headless"> Enable headless mode</label><br>
+      </div>
   </details>
 
   <div class="form-actions">

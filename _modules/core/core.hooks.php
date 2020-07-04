@@ -88,11 +88,7 @@ function renderTags($tag_data) {
 // Render title for template.
 function render_siteTitle($page_data ) {
   global $site_data;
-<<<<<<< HEAD
-  if(isset($page_data['title'])) { echo $page_data['title'] . ' - '; } else { if( $site_data['site_slogan'] !== ''){ echo $site_data['site_slogan'] . ' - '; } }?><?php echo $site_data['site_name'];
-=======
   if(isset($page_data['title'])) { echo $page_data['title'] . ' - '; } else { if( isset($site_data['site_slogan'])){ echo $site_data['site_slogan'] . ' - '; } }?><?php echo $site_data['site_name'];
->>>>>>> master
 }
 
 // Render site Description

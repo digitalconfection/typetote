@@ -17,11 +17,20 @@ class Template {
   public function loadTheme($var) {
 
     $site = new SiteInfo();
+    
     if ($var == 'admin') {
       return '_modules/admin/_theme/page.tpl.php';
     }
     if ($var == 'main') {
-      return '_themes/' . $site->getSiteData()['front_theme'] . '/templates/' .'page.tpl.php';
+
+      if ($site->getSiteData()['headless'] == 'enabled') {
+
+        return '_modules/core/_templates/headless.tpl.php'; 
+
+      } else {
+        return '_themes/' . $site->getSiteData()['front_theme'] . '/templates/' .'page.tpl.php';
+      }
+
     }
   }
 
