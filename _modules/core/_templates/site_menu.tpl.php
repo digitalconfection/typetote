@@ -11,13 +11,6 @@
 
     <li><a href="<?php echo $menu['path']; ?>" id="menu-<?php echo str_replace('#', '', $menu['path']);?>-link"><?php echo $menu['name']; ?></a></li>
 
-<<<<<<< HEAD
-  <?php } else if (substr( $menu['path'], 0, 4 ) === "http") {?>
-
-    <li><a href="<?php echo $menu['path']; ?>"><?php echo $menu['name']; ?></a></li>
-
-=======
->>>>>>> master
   <?php } else { ?>
 
     <li><a href="<?php echo SiteInfo::baseUrl() . $menu['path']; ?>"><?php echo $menu['name']; ?></a></li>
