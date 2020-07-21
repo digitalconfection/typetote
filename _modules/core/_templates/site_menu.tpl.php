@@ -11,6 +11,10 @@
 
     <li><a href="<?php echo $menu['path']; ?>" id="menu-<?php echo str_replace('#', '', $menu['path']);?>-link"><?php echo $menu['name']; ?></a></li>
 
+  <?php } else if ( strpos($menu['path'], 'http') !== false) { ?>
+
+    <li><a href="<?php echo $menu['path']; ?>"><?php echo $menu['name']; ?></a></li>
+
   <?php } else { ?>
 
     <li><a href="<?php echo SiteInfo::baseUrl() . $menu['path']; ?>"><?php echo $menu['name']; ?></a></li>
