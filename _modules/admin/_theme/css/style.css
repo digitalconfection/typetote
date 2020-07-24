@@ -555,3 +555,7 @@ hr {
 .center {
   text-align: center;
 }
+
+.admin-bar {
+  display: none !important;
+}

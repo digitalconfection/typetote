@@ -40,6 +40,9 @@ if (!empty($manifest)){
       $page_data = $content->loadEntity($item['entity_id']);
       $page_data['template_type'] = 'content';
 
+      // This is for the admin bar to call the data.
+      $GLOBALS['entity_id'] = $item['entity_id'];
+
       $override_template = 'page--data-' . $page_data['meta']['path'] . '.tpl.php';
       $override_file = '_themes/' .   $site_data['front_theme'] . '/templates/' . $override_template;
 
@@ -54,7 +57,7 @@ if (!empty($manifest)){
   }
 }
 
-// Crazy idea here would be to loop through catigories.
+// Category Listing
 $categories = $site_info->readDataFile('_data/settings/category.json');
 if (is_array($categories)) {
 

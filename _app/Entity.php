@@ -229,7 +229,11 @@ class Entity
       $category = $options['category'];
     }
     
+    // Sort by recent published.
     $src_data = $this->readDataFile($manifest);
+    $date_published = array_column($src_data, 'date_published');
+    array_multisort($date_published, SORT_DESC, $src_data);
+
     $data = array();
     $i = 0;
 

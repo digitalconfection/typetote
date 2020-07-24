@@ -15,6 +15,7 @@ if ($page_data['list']['content'] !== '') {
 }
 ?>
 
+<div class="list-well">
 <?php if (isset($page_data['title'])) { ?>
   <h1><?php echo $page_data['title']; ?></h1>
 <?php } ?>
@@ -43,3 +44,4 @@ if ($page_data['list']['content'] !== '') {
   <b>No content has been created yet.</b>
 
 <?php } ?>
+</div>

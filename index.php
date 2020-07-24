@@ -26,6 +26,17 @@ if (is_file('_data/settings/site_info.json')) {
   // Boostrap modules & Hookss
   include_once('_app/_bootstrap.php');
 
+  // Show admin bar to the top of the page when user is logged in.
+  if (isset($_SESSION['template']['admin_bar'])) {
+    if ($_SESSION['template']['admin_bar'] == 'yes') {
+
+      $admin_bar_data = new Entity();
+      // Value defiend in core.module.php
+      $page_data = $admin_bar_data->loadEntity($GLOBALS['entity_id']);
+      include('_modules/admin/_templates/admin-bar.tpl.php');
+    }
+  }
+
 } else {
   
   // Load Install File.

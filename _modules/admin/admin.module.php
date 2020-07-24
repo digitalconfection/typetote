@@ -108,6 +108,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false) {
 
       // Otherwise include admin module.
       $GLOBALS['utility_page'] = 'no';
+      $_SESSION['template']['admin_bar'] = 'yes';
       include('admin.inc');
 
       // Logout
