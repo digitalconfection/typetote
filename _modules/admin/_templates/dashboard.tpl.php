@@ -19,7 +19,7 @@ if ($page_data['items']['content']) {
 <h1><i class="fas fa-home"></i> Dashboard</h1>
 
 <div class="dashboard-filter">
-  <span class="label">View:</span> <a href="<?php echo SiteInfo::baseUrl() ?>admin"><i class="fas fa-home"></i> All</a> <a href="<?php echo SiteInfo::baseUrl() ?>admin?q=posts"><i class="fas fa-thumbtack"></i> Posts</a><a href="<?php echo SiteInfo::baseUrl() ?>admin?q=pages"><i class="fas fa-book"></i> Pages</a><a href="<?php echo Template::baseUrl() ?>admin?q=blocks"><i class="fas fa-th-large"></i> Blocks</a>
+  <span class="label">View:</span> <a href="<?php echo SiteInfo::baseUrl() ?>admin"><i class="fas fa-home"></i> All</a> <a href="<?php echo SiteInfo::baseUrl() ?>admin?q=posts"><i class="fas fa-thumbtack"></i> Posts</a><a href="<?php echo SiteInfo::baseUrl() ?>admin?q=pages"><i class="fas fa-book"></i> Pages</a><a href="<?php echo SiteInfo::baseUrl() ?>admin?q=blocks"><i class="fas fa-th-large"></i> Blocks</a>
 </div>
 <?php if (empty($list)) { ?> 
 
