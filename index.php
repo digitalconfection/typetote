@@ -30,10 +30,12 @@ if (is_file('_data/settings/site_info.json')) {
   if (isset($_SESSION['template']['admin_bar'])) {
     if ($_SESSION['template']['admin_bar'] == 'yes') {
 
-      $admin_bar_data = new Entity();
-      // Value defiend in core.module.php
-      $page_data = $admin_bar_data->loadEntity($GLOBALS['entity_id']);
-      include('_modules/admin/_templates/admin-bar.tpl.php');
+      if (strpos($_SERVER['REQUEST_URI'], 'admin') == false) {  
+        $admin_bar_data = new Entity();
+        // Value defiend in core.module.php
+        $page_data = $admin_bar_data->loadEntity($GLOBALS['entity_id']);
+        include('_modules/admin/_templates/admin-bar.tpl.php');
+      }
     }
   }
 

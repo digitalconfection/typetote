@@ -80,18 +80,23 @@ $admin_login->setPath('login', function() {
     $page_content = $template->renderTemplateFile('_modules/admin', 'login-token-form.tpl.php');
     $page_data['template_type'] = 'login';
   }
+
   $admin_theme = new Template();
   include ($admin_theme->loadTheme('admin'));
 });
+
+$login_auth = new Entity(); 
+$auth_file = '_data/' . md5($_SERVER["REMOTE_ADDR"]) . '.json';
+$auth_validate_data = $login_auth->readDataFile($auth_file);  
 
 // On admin logout run script to hide /admin from public.
 if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false) {  
 
   $login_auth = new Entity(); 
   $auth_file = '_data/' . md5($_SERVER["REMOTE_ADDR"]) . '.json';
-  
-  // If auth data matches sessions.
   $auth_validate_data = $login_auth->readDataFile($auth_file);  
+
+  // If auth data matches sessions.
   if (hash_equals($auth_validate_data['p1'], $_SESSION['auth']["p1"])
       && hash_equals($auth_validate_data['p2'], $_SESSION['auth']["p2"])
       && hash_equals($auth_validate_data['ip'], $_SERVER["REMOTE_ADDR"])) {
@@ -122,10 +127,17 @@ if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false) {
   } else {
     header('Location:' . SiteInfo::baseUrl()) . 'login';
   }
-
 }
 
+// if user is logged in and goes to /login redirect to admin.
+// ToDO: Prob a better way of doing this.
+if (strpos($_SERVER['REQUEST_URI'], 'login') !== false) {  
 
-
+  if (hash_equals($auth_validate_data['p1'], $_SESSION['auth']["p1"])
+      && hash_equals($auth_validate_data['p2'], $_SESSION['auth']["p2"])
+      && hash_equals($auth_validate_data['ip'], $_SERVER["REMOTE_ADDR"])) {
+      header('Location:' . SiteInfo::baseUrl() . 'admin');
+  }
+}
 
 ?>

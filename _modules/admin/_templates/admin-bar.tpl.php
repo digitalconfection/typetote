@@ -17,6 +17,10 @@
     float: right;
   }
 </style>
+<script>
+  // To add padding to top to allow for bar regardless of theme. 
+  document.getElementsByTagName("body")[0].style.paddingTop = "39px";
+</script>
 <div id="admin-bar" class="admin-bar">
   <a href="<?php echo SiteInfo::baseUrl(); ?>admin/"><i class="fas fa-home"></i> <span>Dashboard</span></a>
   
