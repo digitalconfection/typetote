@@ -12,7 +12,7 @@
 
   <div class="col-utility">
     <?php if ($page_data['meta']['entity_status'] == 'published') { ?>
-        <a href="<?php echo $page_data['base_url']  . $page_data['meta']['path']?>" target="_blank">View Content <i class="fas fa-arrow-right"></i></a>
+        <a href="<?php echo SiteInfo::baseUrl()  . $page_data['meta']['path']?>" target="_blank">View Content <i class="fas fa-arrow-right"></i></a>
         <br>
         <br>
     <?php } ?>
@@ -78,7 +78,7 @@
     <div class="form-actions">
       <input type="submit" onclick="copyText('page_content', 'page_data');" value="Save">
       <?php if (isset($page_data['meta']['date_published'])) { ?>
-        <a href="<?php echo $page_data['base_url'] ?>admin/delete?q=<?php echo $page_data['meta']['entity_id'] ?>" class="delete-btn">Delete</a>
+        <a href="<?php echo SiteInfo::baseUrl() ?>admin/delete?q=<?php echo $page_data['meta']['entity_id'] ?>" class="delete-btn">Delete</a>
       <?php } ?>
     </div>
 
