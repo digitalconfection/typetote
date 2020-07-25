@@ -1,0 +1,14 @@
+
+#menu-icon {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  #menu-icon {
+    display: block;
+  }
+
+  #menu-well {
+    display: none;
+  }
+}

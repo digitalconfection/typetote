@@ -5,6 +5,7 @@
     position: fixed;
     width: 96%;
     top: 0;
+    right: 0;
     padding: 5px 2% 5px 2%;
   }
 

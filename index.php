@@ -1,4 +1,6 @@
 <?php
+$version = 'v4.0.1b';
+
 // Change this to 0 on production!
 $dev_mode = 0;
 

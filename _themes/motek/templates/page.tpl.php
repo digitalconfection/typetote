@@ -38,8 +38,6 @@
       <h1>Welcome to <?php echo $site_data['site_name']; ?></h1>
       <?php  
         $content = new Entity();
-        $site_info = new SiteInfo();
-        $site_data = $site_info->getSiteData();
         $options = array(
           'status' => 'published',
           'type' => 'post',
