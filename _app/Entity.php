@@ -337,16 +337,24 @@ class Entity
 
   // Used to create a static sitemap after content manifest is generated.
   public function createSiteMap($src) {
-    $xml_header = '<?xml version="1.0" encoding="UTF-8"?><xml></xml>';
+    $xml_header = '<?xml version="1.0" encoding="UTF-8"?><urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"></urlset>';
     $xml = new SimpleXMLElement($xml_header);
     
     foreach ($src as $item) {
       $url = $xml->addChild('url');
       $url->addChild('loc', 'http:' . SiteInfo::baseUrl() . $item['path']);
       if (empty($item['date_edited'])) {
-        $url->addChild('lastmod', $item['date_published']);
+        $time = strtotime($item['date_published']);
+        $time = date('c', $time);
+        $url->addChild('lastmod',  $time);
       } else {
-        $url->addChild('lastmod', $item['date_edited']);
+        $time = strtotime($item['date_edited']);
+        $time = date('c', $time);
+        $url->addChild('lastmod', $time);
       }
     }
 
