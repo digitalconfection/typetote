@@ -10,13 +10,13 @@
 <body>
 
 <?php #  Renders the site banner. ?>
-<?php render_site_banner()?>
+<?php render_siteBanner()?>
 
 <div class="menu">
   <a href="<?php render_baseUrl(); ?>" class="logo"><?php echo $site_data['site_name']; ?></a>
     <div id="menu-icon" onclick="slideToggle()">☰</div>
     <div id="menu-well">
-      <nav><?php render_site_menu(); ?></nav>
+      <nav><?php render_siteMenu(); ?></nav>
     </div>
   </div>
 </div>

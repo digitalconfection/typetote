@@ -10,7 +10,7 @@
 <body>
 
 <!-- Renders the site banner. -->
-<?php render_site_banner()?>
+<?php render_siteBanner()?>
 
 <nav>
   <div class="container">
@@ -21,7 +21,7 @@
       <div class="menu">
         <div id="menu-icon" onclick="slideToggle()">☰</div>
         <div id="menu-well">
-          <?php render_site_menu(); ?>
+          <?php render_siteMenu(); ?>
           <a href="<?php render_baseUrl(); ?>search" class="search-icon">⌕</a>
         </div>
       </div>

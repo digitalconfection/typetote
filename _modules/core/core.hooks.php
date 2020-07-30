@@ -42,7 +42,7 @@ function render_themeCSS($theme) {
 }
 
 // Function to render menu on tempalte.
-function render_site_menu() {
+function render_siteMenu() {
   
   $menu = new Entity();
   $menu_data = $menu->readDataFile('_data/settings/menu.json');
@@ -60,7 +60,7 @@ function render_block($name) {
 }
 
 // Site Banner
-function render_site_banner() {
+function render_siteBanner() {
   $site_banner = new Entity();
   $data = $site_banner->readDataFile('_data/settings/site_banner.json');
   include('_templates/site-banner.tpl.php');
