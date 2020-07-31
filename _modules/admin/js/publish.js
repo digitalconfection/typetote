@@ -97,6 +97,19 @@ function blockOptional() {
 
 }
 
+// Tag click and copy
+function tagClick(id)
+{
+  var tagValue = document.getElementById(id).innerText;
+  var exstingTags = document.getElementById('tags').value;
+
+  if (exstingTags == '') {
+    document.getElementById('tags').value = tagValue;
+  } else {
+    document.getElementById('tags').value = exstingTags + ',' + tagValue
+  }
+} 
+
 
 // Add autosave.
 function tt_autosave() {

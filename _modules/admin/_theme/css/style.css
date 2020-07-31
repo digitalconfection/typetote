@@ -559,3 +559,23 @@ hr {
 .admin-bar {
   display: none !important;
 }
+
+/* Style for exsitng tag function */
+ul.existing_tags {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1em;
+  font-size: small;
+}
+
+.existing_tags li {
+  display: inline;
+  list-style: none;
+  margin-right: .5em;
+  cursor: pointer;
+  color: rgb(122, 122, 122);
+}
+
+.existing_tags li:hover {
+  color: #6D63EC;
+}
