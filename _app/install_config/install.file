@@ -16,7 +16,7 @@
     $site_info_data['blog_name'] = 'Blog';
     $site_info_data['blog_path'] = 'blog';
     $site_info_data['front_theme'] = 'motek';
-    $site_info_data['site_slogan'] = 'Just Another TypeTote site'
+    $site_info_data['site_slogan'] = 'Just Another TypeTote Site';
     $site_info->saveSetting('site_info.json', $site_info_data);
 
     // Create menu.
