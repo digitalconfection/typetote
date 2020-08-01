@@ -34,10 +34,5 @@
   <textarea class="full-html-block hide" id="page_data" name="entity[body]"><?php if (isset($page_data['body'])) { echo $page_data['body']; } ?></textarea>
 </div>
 
-<div id="img_upload_well" class="media-model hide">
-  <div class="model-bg">
-    <div class="close-model" onclick="toggle('img_upload_well');"><i class="far fa-times-circle" title="close"></i></div>
-    <iframe id="img_upload_frame" frameborder="0" src="<?php echo SiteInfo::baseUrl(); ?>admin/media/browser"></iframe>
-  </div>
-</div>
+<div id="img_upload_well" class="media-model hide"></div>
 

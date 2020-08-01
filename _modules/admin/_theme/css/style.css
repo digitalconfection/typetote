@@ -281,7 +281,7 @@ a.wy_btn:hover {
   top: 0;
   right: 0;
   width: 100%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.80);
   padding-bottom: 0;
 }
 
@@ -578,4 +578,49 @@ ul.existing_tags {
 
 .existing_tags li:hover {
   color: #6D63EC;
+}
+
+/* Featured Image */
+
+#featured_image-btn {
+  display: block;
+  height: 120px;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  line-height: 120px;
+  border: 1px dashed #B8C6D4;
+  margin-top: 1em;
+  border-radius: 8px;
+  color: #B8C6D4;
+}
+
+#featured_image-btn:hover {
+  border-color: #6D63EC;
+  color: #6D63EC;
+}
+
+#featured_image-btn .fas {
+  font-size: 2em;
+  line-height: 120px;
+}
+
+#featured_image-preview img{
+  display: block;
+  width: 90%;
+  height: auto;
+  margin: auto;
+  margin-top: 1em;
+}
+
+#featured_image-remove {
+  width: 90%;
+  font-size: small;
+  margin: auto;
+  color: rgb(122, 122, 122);
+  margin-top: .5rem;
+}
+
+#featured_image-remove:hover {
+  color: #ED7996;
 }

@@ -7,12 +7,14 @@ class SiteInfo {
   // Get Base Url.
   public static function baseUrl() {
 
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+
     $dir = basename(dirname($_SERVER['PHP_SELF']));
     if ($dir == null) {
-      return '//' . $_SERVER['SERVER_NAME'] . '/';
+      return $protocol . $_SERVER['SERVER_NAME'] . '/';
     }
     else {
-      return '//' . $_SERVER['SERVER_NAME'] . '/' . $dir . '/';
+      return $protocol . $_SERVER['SERVER_NAME'] . '/' . $dir . '/';
     }
   }
 

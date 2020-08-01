@@ -344,6 +344,7 @@ class Entity
     http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"></urlset>';
     $xml = new SimpleXMLElement($xml_header);
     
+    // TODO: add a menu check to get order of pages and index.
     foreach ($src as $item) {
       $url = $xml->addChild('url');
       $url->addChild('loc', 'http:' . SiteInfo::baseUrl() . $item['path']);

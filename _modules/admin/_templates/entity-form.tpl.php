@@ -79,10 +79,9 @@
             } else {
               $tag_list[] = $t;
             }
-          } 
+          }
 
           $tag_list = array_unique($tag_list);
-
           echo '<ul class="existing_tags">';
           foreach ($tag_list as $key => $value) {
             echo '<li id="tag_'. $key .'" onClick="tagClick(this.id)"><i class="fa fa-tag" aria-hidden="true"></i> ' . $value . '</li>';
@@ -92,6 +91,31 @@
         
         <label for="body">Summery:</label> 
         <textarea id="body" name="entity[summery]"><?php if (isset($page_data['summery'])) { echo $page_data['summery']; } ?></textarea>
+
+        <details>
+          <summary>Featured Image</summary>
+          
+          <?php if (isset($page_data['meta']['featured_image']) && $page_data['meta']['featured_image'] !== '') { ?>
+            <div class="hide" id="featured_image-btn" onclick="imageUpload('featured_image')"><i class="fas fa-image"></i></div>
+          <?php } else { ?>
+            <div id="featured_image-btn" onclick="imageUpload('featured_image')"><i class="fas fa-image"></i></div>
+          <?php } ?>
+
+          <div id="featured_image-preview">
+            <?php if (isset($page_data['meta']['featured_image'])) { ?> 
+              <img src="<?php echo $page_data['meta']['featured_image'];?>">  
+            <?php } ?>
+          </div>
+
+          <?php if (isset($page_data['meta']['featured_image']) && $page_data['meta']['featured_image'] !== '') { ?>
+            <div id="featured_image-remove" onclick="removeFeaturedImage();"><i class="fas fa-times"></i> Remove</div>
+          <?php } else { ?>
+            <div class="hide" id="featured_image-remove" onclick="removeFeaturedImage();"><i class="fas fa-times"></i> Remove</div>
+          <?php } ?>
+          
+          <input id="featured_image-src" type="hidden" name="entity[meta][featured_image]" value="<?php if (isset($page_data['meta']['featured_image'])) { echo $page_data['meta']['featured_image']; } ?>">
+        </details>
+        <br>
 
         <details>
           <summary>Metadata</summary>

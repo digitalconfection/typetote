@@ -15,10 +15,22 @@ function render_templateContent($page_data) {
   include('_templates/template-content.tpl.php');
 }
 
+
+
 // Render the meta head items.
 function render_templateMetaHead($page_data){
   $site_info = new SiteInfo();
   $site_data = $site_info->getSiteData();
+
+  if (isset($page_data['meta']['featured_image'])) {
+    $fb_og = $page_data['meta']['featured_image'];
+    $twitter_og = $page_data['meta']['featured_image'];
+  } else {
+    $fb_og = $site_info->baseUrl() . '_themes/'. $site_data['front_theme'] . '/img/og_facebook.png';
+    $twitter_og = $site_info->baseUrl() . '_themes/'. $site_data['front_theme'] . '/img/og_twitter.png';
+
+  }
+
   include('_templates/meta_head.tpl.php');
 }
 
