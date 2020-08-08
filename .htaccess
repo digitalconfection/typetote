@@ -10,6 +10,11 @@ ServerSignature Off
   Deny from all
 </Files>
 
+# Deny version file
+<Files "v4*" >
+  Deny from all
+</Files>
+
 # Initiate Rewrite
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
