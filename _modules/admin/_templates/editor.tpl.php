@@ -16,8 +16,9 @@
         <a class="wy_btn" title="Ordered List" onclick="tt.text('insertOrderedList');" href="javascript:void(0);"><i class="fa fa-list-ol" title="Unordered List" aria-hidden="true"></i></a>
         <a class="wy_btn" onclick="tt.text('insertUnorderedList');" href="javascript:void(0);"><i class="fa fa-list" aria-hidden="true"></i></a>
         <span id="img-span-wy">
-        <span class="wy_space" >| </span>
-        <a class="wy_btn" title="Insert Image" onclick="imageUpload();" href="javascript:void(0);"><i class="fas fa-image"></i></a>
+          <span class="wy_space" >| </span>
+          <a class="wy_btn" title="Insert Image" onclick="imageUpload();" href="javascript:void(0);"><i class="fas fa-image"></i></a>
+        </span>
         <span class="wy_space" >| </span>
         <a class="wy_btn" title="Hyperlink" onclick="tt.input('createLink', 'Enter link', 'https://');" href="javascript:void(0);"><i class="fas fa-link" aria-hidden="true"></i></a>
         <a class="wy_btn"  title="Remove Hyperlink" onclick="tt.text('unlink');" href="javascript:void(0);"><i class="fas fa-unlink"></i></a>
