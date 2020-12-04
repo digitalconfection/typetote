@@ -1,7 +1,7 @@
 
 <?php if (!empty($data['body'])) { ?>
 <div id="top-banner" class="site-banner"><div id="close-top-banner" class="close" onclick="closeBanner();">X</div>
-  <div class="top-banner-well"><?php echo $data['body']; ?></div>
+  <div class="container"><?php echo $data['body']; ?></div>
 </div>
 <script>
 // Get localstorage var
