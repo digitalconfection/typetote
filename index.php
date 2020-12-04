@@ -1,6 +1,6 @@
 <?php
 // Change this to 0 on production!
-$dev_mode = 0;
+$dev_mode = 1;
 
 // Dev Dumps:
 error_reporting(0);

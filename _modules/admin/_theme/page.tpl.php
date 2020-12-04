@@ -32,8 +32,12 @@
       <br>
       <hr>
       Thank you for using <a href="https://typetote.com" target="_blank">TypeTote</a>! You Rock!. <i class="far fa-smile-beam"></i>
+      <br>
+      <br>
+      Version: <b><?php include ('version.txt'); ?></b>
     </div>
 </div>
+
 <?php } else { ?>
   <style>
     .admin-col, .admin-utility, .cc, pre {
@@ -52,7 +56,7 @@
       margin: 0;
     }
   </style>
-  <?php include ($page_content) ?>
 <?php } ?>
+
 </body>
 </html>
