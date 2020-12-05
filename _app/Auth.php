@@ -12,7 +12,7 @@ class Auth {
     session_regenerate_id(true);    // invalidate old session ID
     session_unset(); 
     session_destroy();
-    header('Location:' . SiteInfo::baseUrl());
+    header('Location:' . SiteInfo::baseUrl() . 'login');
   }
 }
 
