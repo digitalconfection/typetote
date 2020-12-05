@@ -5,6 +5,13 @@
 </head>
 <body>
 
+<?php 
+
+// echo '<pre>';
+// print_r($_SESSION['auth']); 
+// echo '</pre>';
+?>
+
 <?php if (empty($page_data['utility_page']) or $page_data['utility_page'] !== 'yes') { ?>  
 <div class="admin-well">
   <div class="admin-col">

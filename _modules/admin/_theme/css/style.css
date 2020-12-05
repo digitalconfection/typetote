@@ -512,6 +512,18 @@ ul.pagination {
   border-radius: 4px;
 }
 
+.login-msg-bad {
+  background-color: #FFF5F1;
+  border: 1px solid #FE6D48;
+  color: #AC4319;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1em;
+  margin-bottom: 2em;
+  margin-top: -2em;
+  border-radius: 4px;
+}
+
 /* Misc */
 .cc {
   font-size: small;
