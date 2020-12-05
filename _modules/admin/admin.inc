@@ -222,6 +222,8 @@ $admin_settings->setPath('admin/settings', function() {
     $site_info_data['admin_email'] = strtolower($_POST['admin_email']);
     $site_info_data['blog_name'] = $_POST['blog_name'];
     $blog_path = strtolower($site_info_data['blog_name']);
+    $site_info_data['sec_key_1'] = password_hash($_POST['sec_key_1'], PASSWORD_DEFAULT);
+    $site_info_data['sec_key_2'] = password_hash($_POST['sec_key_2'], PASSWORD_DEFAULT);
     $site_info_data['blog_path'] = str_replace(' ', '-', $blog_path);
     $site_info->saveSetting('site_info.json', $site_info_data);
   }

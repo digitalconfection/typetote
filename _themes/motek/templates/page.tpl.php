@@ -63,7 +63,7 @@
     <?php } ?>
 
     <!-- This renders the 404 page. Customize as you see fit. -->
-    <?php if (isset($page_data['template_type']) && isset($page_data['status'])) { if ($page_data['status'] == '404') {?>
+    <?php if (isset($page_data['status'])) { if ($page_data['status'] == '404') {?>
       <h1>Gratz. You Broke it!</h1>
       <p>It looks like something terrible has happened, and this page no longer exists.</p>
     <?php } } ?>

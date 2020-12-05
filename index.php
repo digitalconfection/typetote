@@ -57,7 +57,7 @@ if ((http_response_code() == '404')) {
 
   $page_data['status'] = '404';
   $override_template = 'page--404.tpl.php';
-  $override_file = '_themes/' .   $GLOBALS['main_theme'] . '/' . $override_template;
+  $override_file = '_themes/' .   $site_data['front_theme'] . '/' . $override_template;
   if (is_file($override_file)) {
     $page_content = $override_file;
   }

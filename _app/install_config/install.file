@@ -17,6 +17,8 @@
     $site_info_data['blog_path'] = 'blog';
     $site_info_data['front_theme'] = 'motek';
     $site_info_data['site_slogan'] = 'Just Another TypeTote Site';
+    $site_info_data['sec_key_1'] = password_hash($_POST['sec_key_1'], PASSWORD_DEFAULT);
+    $site_info_data['sec_key_2'] = password_hash($_POST['sec_key_2'], PASSWORD_DEFAULT);
     $site_info->saveSetting('site_info.json', $site_info_data);
 
     // Create menu.

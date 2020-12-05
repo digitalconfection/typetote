@@ -69,6 +69,7 @@
   <details>
     <summary><b>Key Questions:</b></summary>
     <br>
+    <p>The following questions are part of TypeTotes security login process. We recommend changing these answers over time. What you see are hashed values, and you do not need to remember what you wrote previously.</p>
     <div class="page-content">
       <label for="sec_key_1">Favorite food?</label>
       <input id="sec_key_1" type="text" name="sec_key_1" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_1'])) { echo $page_data['sec_key_1']; } ?>" required>
