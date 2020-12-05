@@ -1,17 +1,15 @@
 <?php
-if ($page_data['list']['content'] !== '') { 
+// TODO: find a better way to do this.
+if (isset($page_data['items']['content'][0])) { 
 
-  if ($page_data['pagination_num']) {
+  if (isset($page_data['pagination_num'])) {
     $pag_num = $page_data['pagination_num'];
 
   } else {
     $pag_num = 0;
   }
 
-  $list = $page_data['list']['content'][$pag_num];
-
-} else {
-  $list = $page_data['list'];
+  $list = $page_data['items']['content'][$pag_num];
 }
 ?>
 

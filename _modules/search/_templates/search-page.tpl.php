@@ -1,5 +1,5 @@
 <?php 
-if ($page_data['results']['content']) { 
+if (isset($page_data['results']['content'][0])) { 
 
   if ($page_data['pagination_num']) {
     $pag_num = $page_data['pagination_num'];
@@ -9,9 +9,6 @@ if ($page_data['results']['content']) {
   }
 
   $list = $page_data['results']['content'][$pag_num];
-
-} else {
-  $list = $page_data['results'];
 }
 
 if ($page_data['query'] == '') {

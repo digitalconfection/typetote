@@ -25,17 +25,22 @@ $search_results->setPath('search', function() {
 
   $search_results = array();
   $term = strtolower($query->getQuery('q'));
-  foreach($search_array as $result){
-    if (strpos($result['title'], $term) !== false or strpos($result['body'], $term) !== false){
 
-      $search_results[] = $result;
-      $page_data['status'] = 'yes';
+  if (!empty($term)) {
+    foreach($search_array as $result){
 
-    } else {
-
-      $page_data['status'] = 'no';
+      if (strpos($result['title'], $term) !== false or strpos($result['body'], $term) !== false){
+  
+        $search_results[] = $result;
+        $page_data['status'] = 'yes';
+  
+      } else {
+  
+        $page_data['status'] = 'no';
+      }
     }
   }
+ 
 
   // If $search_results is not empty, return as $page_data for template rendering.
   $page_data['query'] = $query->getQuery('q');
@@ -57,7 +62,7 @@ $search_results->setPath('search', function() {
   $page_data['pagination_num'] = $query->getQuery('pg');
   $page_data['base_url'] = $template->baseUrl() . 'search?q=' . $query->getQuery('q');
 
-  $page_content = $template->renderTemplateFile('_extensions/search', 'search-page.tpl.php');
+  $page_content = $template->renderTemplateFile('_modules/search', 'search-page.tpl.php');
   include ($template->loadTheme('main'));
 
 });
