@@ -7,6 +7,7 @@
     top: 0;
     right: 0;
     padding: 5px 2% 5px 2%;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   .admin-bar a {

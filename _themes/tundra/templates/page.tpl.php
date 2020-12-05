@@ -23,44 +23,39 @@
 
 <main>
   <!-- Remove this if you decide to use page--front.tpl.php  -->
-  <?php if ($page_data['template_type'] == 'front') { ?>
-    <h1>Welcome to <?php echo $site_data['site_name']; ?></h1>
-    
-    <?php  
-      $content = new Entity();
-      $options = array(
-        'status' => 'published',
-        'type' => 'post',
-        'category' => $site_data['blog_path'],
-      );
-      $content_list = $content->renderEntityList('_data/manifests/content_manifests.json', $options);
-      $page_data['list'] = $content->paginate($content_list);
-      render_templateList($page_data); 
-    ?>
-  <?php } ?>
+  <?php if (isset($page_data['template_type']) && $page_data['template_type'] == 'front') { ?>
+      <h1>Welcome to <?php echo $site_data['site_name']; ?></h1>
+      <?php  
+        $content = new Entity();
+        $options = array(
+          'status' => 'published',
+          'type' => 'post',
+          'category' => $site_data['blog_path'],
+        );
+        $content_list = $content->renderEntityList('_data/manifests/content_manifests.json', $options);
+        $page_data['items'] = $content->paginate($content_list);
+        render_templateList($page_data); 
+      ?>
+    <?php } ?>
+
+    <!-- This line renders a page overide i.e. page--front.tpl.php -->
+    <?php if (isset($page_content)) { include($page_content); } ?>
   
-  <?php #  This line renders a page overide i.e. page--front.tpl.php ?>
-  <?php if (isset($page_content)) { include($page_content); } ?>
-
-  <div class="container">
-  <?php #  This line renders the content template, i.e. a post or page. ?>
-  <?php if ($page_data['template_type'] == 'content') { ?>
-    <article>
+    <!-- This line renders the content template, i.e. a post or page. -->
+    <?php if (isset($page_data['template_type']) && $page_data['template_type'] == 'content') { ?>
       <?php render_templateContent($page_data); ?>
-    </article>
-  <?php } ?>
+    <?php } ?>
 
-  <?php #  This line renders a list page, i.e. blog, tag or category ?>
-  <?php if ($page_data['template_type'] == 'list') { ?>
-    <?php  render_templateList($page_data); ?>
-  <?php } ?>
+    <!-- This line renders a list page, i.e. blog, tag or category -->
+    <?php if (isset($page_data['template_type']) && $page_data['template_type'] == 'list') { ?>
+      <?php  render_templateList($page_data); ?>
+    <?php } ?>
 
-  <?php # This renders the 404 page. Customize as you see fit. ?>
-  <?php if (isset($page_data['status'])) { if ($page_data['status'] == '404') {?>
-    <h1>Gratz. You Broke it!</h1>
-    <p>It looks like something terrible has happened, and this page no longer exists.</p>
-  <?php } } ?>
-  </div>
+    <!-- This renders the 404 page. Customize as you see fit. -->
+    <?php if (isset($page_data['status'])) { if ($page_data['status'] == '404') {?>
+      <h1>Gratz. You Broke it!</h1>
+      <p>It looks like something terrible has happened, and this page no longer exists.</p>
+    <?php } } ?>
 </main>
 
 <footer>
