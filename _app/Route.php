@@ -80,10 +80,16 @@ class Route {
   }
 
   public function getQuery($val) {
-    $q = $_GET[$val];
-    $q = strip_tags($q);
 
-    return $q;
+    if (isset($_GET[$val])) {
+      $q = $_GET[$val];
+      $q = strip_tags($q);
+  
+      return $q;
+    } else {
+      return null;
+    }
+   
   }
 
   public function getPath() 

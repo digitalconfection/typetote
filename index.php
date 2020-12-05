@@ -1,9 +1,11 @@
 <?php
 // Change this to 0 on production!
-$dev_mode = 0;
+$dev_mode = 1;
 
 // Dev Dumps:
-error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Unless explicitly set everything is a 404 (will need a dynamic page route)
 http_response_code(404);

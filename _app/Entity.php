@@ -213,6 +213,10 @@ class Entity
   public function renderEntityList($manifest, &$options = null) 
   {
     
+    if ($options == null) {
+      $options = array();
+    }
+
     if (key_exists('type', $options)) {
       $type = $options['type'];
     }
@@ -231,8 +235,10 @@ class Entity
     
     // Sort by recent published.
     $src_data = $this->readDataFile($manifest);
-    $date_published = array_column($src_data, 'date_published');
-    array_multisort($date_published, SORT_DESC, $src_data);
+    if (isset($src_data)) {
+      $date_published = array_column($src_data, 'date_published');
+      array_multisort($date_published, SORT_DESC, $src_data);
+    }
 
     $data = array();
     $i = 0;
@@ -294,7 +300,7 @@ class Entity
   }
 
   public function paginate($array, $count = null) {
-    if ($count !== null) {
+    if (isset($count)) {
         $output = array_chunk($array, $count);
       }
       else  {

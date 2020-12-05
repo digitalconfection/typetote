@@ -23,7 +23,7 @@ class Template {
     }
     if ($var == 'main') {
 
-      if ($site->getSiteData()['headless'] == 'enabled') {
+      if (isset($site->getSiteData()['headless']) && $site->getSiteData()['headless'] == 'enabled') {
 
         return '_modules/core/_templates/headless.tpl.php'; 
 

@@ -20,9 +20,3 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?path=$1 [NC,L,QSA]
-
-### Speed ###
-# preserve bandwidth for PHP enabled servers
-<ifmodule mod_php4.c>
-  php_value zlib.output_compression 16386
-</ifmodule>

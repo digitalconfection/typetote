@@ -1,6 +1,6 @@
 <?php 
 // TODO: find a better way to do this.
-if ($page_data['items']['content']) { 
+if (isset($page_data['items']['content'][0])) { 
 
   if ($page_data['pagination_num']) {
     $pag_num = $page_data['pagination_num'];
@@ -10,9 +10,6 @@ if ($page_data['items']['content']) {
   }
 
   $list = $page_data['items']['content'][$pag_num];
-
-} else {
-  $list = $page_data['list'];
 }
 ?>
 

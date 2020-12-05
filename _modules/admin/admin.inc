@@ -15,18 +15,26 @@ $admin_content->setPath('admin', function() {
 
   if ($query->getQuery('q') == 'posts') {
     
-    $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/content_manifests.json', $options = array('type' => 'post')));
     $page_data['sort'] = 'Post';
+    if (is_file('_data/manifests/content_manifests.json')) {
+      $options = array('type' => 'post');
+      $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/content_manifests.json', $options));
+    }
 
   } else if ($query->getQuery('q') == 'pages') {
     
-    $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/content_manifests.json', $options = array('type' => 'page')));
     $page_data['sort'] = 'Page';
+    if (is_file('_data/manifests/content_manifests.json')) {
+      $options = array('type' => 'page');
+      $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/content_manifests.json', $options)); 
+    }
 
   } else if ($query->getQuery('q') == 'blocks') {
-  
-    $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/block_manifests.json'));
+    
     $page_data['sort'] = 'Block';
+    if (is_file('_data/manifests/block_manifests.json')) {
+      $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/block_manifests.json'));
+    }
   
   } else {
   
