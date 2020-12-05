@@ -1,4 +1,4 @@
-<?php if ($GLOBALS['utility_page'] == 'no') { ?>
+<?php if (empty($page_data['utility_page']) or $page_data['utility_page'] !== 'yes') { ?>
 <h1><i class="far fa-image"></i> Images</h1>
 <?php }?>
 

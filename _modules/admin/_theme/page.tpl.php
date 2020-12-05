@@ -5,6 +5,7 @@
 </head>
 <body>
 
+<?php if (empty($page_data['utility_page']) or $page_data['utility_page'] !== 'yes') { ?>  
 <div class="admin-well">
   <div class="admin-col">
     <a href="<?php echo SiteInfo::baseUrl(); ?>admin/"><img class="tt-logo-side" src="<?php echo SiteInfo::baseUrl();?>_modules/admin/img/tt-emb.svg"></a>
@@ -33,10 +34,15 @@
       Thank you for using <a href="https://typetote.com" target="_blank">TypeTote</a>! You Rock!. <i class="far fa-smile-beam"></i>
       <br>
       <br>
+      Version: <b><?php include ('version.txt'); ?></b>
     </div>
 </div>
 
-  <!-- <style>
+<?php } else { ?>
+  
+  <?php include ($page_content) ?>
+
+  <style>
     .admin-col, .admin-utility, .cc, pre {
       display: none
     }
@@ -52,7 +58,8 @@
       padding: 0;
       margin: 0;
     }
-  </style> -->
+  </style>
+<?php } ?>
 
 </body>
 </html>

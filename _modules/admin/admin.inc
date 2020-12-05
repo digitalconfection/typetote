@@ -12,7 +12,6 @@ $admin_content->setPath('admin', function() {
   $page_data['pagination_num'] = $query->getQuery('pg');
   $page_data['base_url'] = $template->baseUrl() . 'admin?q=' . $query->getQuery('q');
 
-
   if ($query->getQuery('q') == 'posts') {
     
     $page_data['sort'] = 'Post';
@@ -43,6 +42,7 @@ $admin_content->setPath('admin', function() {
 
   }
 
+  $page_data['utility_page'] = 'no';
   include ($template->loadTheme('admin'));
 
 });
@@ -176,7 +176,7 @@ $admin_menus->setPath('admin/media', function() {
 
 });
 
-// Embeded media browser
+// Media browser
 $file_upload = new Route();
 $file_upload->setPath('admin/media/browser', function() {
 
@@ -187,8 +187,8 @@ $file_upload->setPath('admin/media/browser', function() {
   $page_data['files'] = $file->browse_files();
   $page_data['url'] = $template->baseUrl();
   $page_data['embeded'] = 'yes';
-  $GLOBALS['utility_page'] = 'yes';
 
+  $page_data['utility_page'] = 'yes';
   include ($template->loadTheme('admin'));
 });
 
@@ -203,9 +203,10 @@ $file_upload->setPath('admin/media/upload', function() {
 
   $template = new Template();
   $template->renderModuleJs('admin/js/file.js');
-  $GLOBALS['utility_page'] = 'yes';
+  $page_data['utility_page'] = 'yes';
   $page_content = $template->renderTemplateFile('_modules/admin', 'media-upload.tpl.php');
 
+  $page_data['utility_page'] = 'yes';
   include ($template->loadTheme('admin'));
 });
 
