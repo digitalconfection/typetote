@@ -59,7 +59,7 @@ $admin_content->setPath('login', function() {
   }
 
   // Redirect user to admin if they are authenticated.
-  if (isset($_SESSION['auth']['template']) && $_SESSION['auth']['template'] == 'admin') {
+  if (isset($_SESSION['auth']['template']) &&  hash_equals($_SESSION['auth']['template'], $site_info['sec_key_2'] . 'admin')) {
     header('Location:' . SiteInfo::baseUrl() . 'admin');
   }
 

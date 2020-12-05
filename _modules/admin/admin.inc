@@ -254,4 +254,5 @@ $site_banner->setPath('admin/site-banner', function() {
   include ($template->loadTheme('admin'));
 });
 
+
 ?>

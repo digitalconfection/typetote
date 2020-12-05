@@ -10,4 +10,5 @@
   </form>
 </div>
 
+<a href="<?php echo SiteInfo::baseUrl() ?>"><i class="fas fa-arrow-left"></i> Back To Home</a>
 </div>
