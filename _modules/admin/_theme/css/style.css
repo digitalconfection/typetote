@@ -501,27 +501,24 @@ ul.pagination {
 }
 
 .login-msg {
-  background-color: #ceffe4;
-  border: 1px solid #47ff84;
+
   margin-right: auto;
   margin-left: auto;
-  text-align: center;
   padding: 1em;
   margin-bottom: 2em;
   margin-top: -2em;
   border-radius: 4px;
 }
 
-.login-msg-bad {
+.login-msg--good {
+  background-color: #ceffe4;
+  border: 1px solid #47ff84;
+}
+
+.login-msg--bad {
   background-color: #FFF5F1;
   border: 1px solid #FE6D48;
   color: #AC4319;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 1em;
-  margin-bottom: 2em;
-  margin-top: -2em;
-  border-radius: 4px;
 }
 
 /* Misc */

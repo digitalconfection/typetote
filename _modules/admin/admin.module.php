@@ -27,7 +27,7 @@ $admin_content->setPath('login', function() {
           'cost' => 12,
         ];
         $token = password_hash($token_core, PASSWORD_BCRYPT, $options);
-        $_SESSION['auth']['token'] = $token;
+        $_SESSION['auth']['token'] = str_replace('.', '', $token);
 
         // Mail Token:
         $to = $site_info['admin_email'];

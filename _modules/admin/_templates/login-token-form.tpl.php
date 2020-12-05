@@ -1,5 +1,5 @@
 <div class="login-well">
-<div class="login-msg">Please check your email for the login token.</div>
+<div class="login-msg login-msg--good">Please check your email for the login token.</div>
 
 <a href="https://typetote.com" target="_blank"><img class="emblem" src="<?php echo SiteInfo::baseUrl() ?>/_modules/admin/img/tt-emb.svg"></a>
 <div class="wrapper">

@@ -1,7 +1,7 @@
 <div class="login-well">
   
 <?php if(isset($message)) { ?>
-  <div class="login-msg-bad"><?php echo $message ?></div>
+  <div class="login-msg login-msg--bad"><?php echo $message ?></div>
 <?php } ?>
   
   <a href="https://typetote.com" target="_blank"><img class="emblem" src="<?php echo SiteInfo::baseUrl() ?>/_modules/admin/img/tt-emb.svg"></a>
