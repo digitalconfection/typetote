@@ -61,6 +61,10 @@ $admin_content->setPath('login', function() {
           $_SESSION['auth']['login_time'] = time();
           header('Location:' . SiteInfo::baseUrl() . 'admin');
         }
+
+        if ($_POST['token'] !== $_SESSION['auth']['token']) {
+          $message_bad = 'Sorry the token you entered is incorrect. Please try again.';
+        }
       }
     }
   }
