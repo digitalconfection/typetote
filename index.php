@@ -1,7 +1,4 @@
 <?php
-// Change this to 0 on production!
-$dev_mode = 1;
-
 // Unless explicitly set everything is a 404 (will need a dynamic page route)
 http_response_code(404);
 
@@ -58,12 +55,11 @@ if ((http_response_code() == '404')) {
   include ($theme->loadTheme('main'));
 }
 
-// Dev Mode.
-if ($dev_mode == 1) {
-  
+// Dev Mode, to enable create a file called dev.php in the website root.
+if (file_exists('dev.php')) {
   if(strpos($_SERVER['REQUEST_URI'], 'login') !== false){
 
-    $dev_msg = 'Development mode is on! Change it in the index.php file before going to production.';
+    $dev_msg = 'Development mode is on! Remove the dev.php file before going to production.';
     echo '<style>
     .dev-mode {
       position: fixed;
@@ -78,7 +74,7 @@ if ($dev_mode == 1) {
       font-size: medium;
     }
     </style>';
-
+  
     if (isset($_SESSION['auth']['token']) && $_SESSION['auth']['token']) {
       echo '<div class="dev-mode">';
       echo '<div>Login Code:<br>' . $_SESSION['auth']['token'] . '</div>';
