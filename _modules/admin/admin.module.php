@@ -20,6 +20,9 @@ $admin_content->setPath('login', function() {
     if (isset($_POST['email'])) {
       $_SESSION['auth']['key_1'] = $_POST['key_1'];
       if (hash_equals($_POST['email'], $site_info['admin_email']) && hash_equals($_SESSION['auth']['key_1'], $_POST['key_1'])) {
+        
+        // Timegate the acceptance of the token.
+        $_SESSION['auth']['login_time_token'] = time();
 
         // Generate Token & load form.
         $token_core = hash('sha512',  mt_rand() . $_SERVER["REMOTE_ADDR"] . random_bytes(32) .  $site_info['sec_key_1']);
@@ -43,19 +46,23 @@ $admin_content->setPath('login', function() {
         $message = 'Sorry the email you entered is incorrect. Please try again.';
       }
     }
-
+    
     // If the token form is set, get login ID and key_2 var.
     if (isset($_POST['token'])) {
       $_SESSION['auth']['key_2'] = $_POST['key_2'];
 
-      if ( hash_equals($_POST['token'], $_SESSION['auth']['token']) && hash_equals($_SESSION['auth']['key_2'], $_POST['key_2']) ) {
-        $_SESSION['auth']['template'] = $site_info['sec_key_2'] . 'admin';
-        $_SESSION['auth']['login_ip'] = $_SERVER['REMOTE_ADDR'];
-        $_SESSION['auth']['login_time'] = time();
-        header('Location:' . SiteInfo::baseUrl() . 'admin');
+      if (time() - $_SESSION['auth']['login_time_token'] > 600) {
+        header('Location:' . SiteInfo::baseUrl() . 'admin/logout');
+      }
+      else {
+        if ( hash_equals($_POST['token'], $_SESSION['auth']['token']) && hash_equals($_SESSION['auth']['key_2'], $_POST['key_2']) ) {
+          $_SESSION['auth']['template'] = $site_info['sec_key_2'] . 'admin';
+          $_SESSION['auth']['login_ip'] = $_SERVER['REMOTE_ADDR'];
+          $_SESSION['auth']['login_time'] = time();
+          header('Location:' . SiteInfo::baseUrl() . 'admin');
+        }
       }
     }
-
   }
 
   // Redirect user to admin if they are authenticated.
@@ -67,6 +74,7 @@ $admin_content->setPath('login', function() {
   include ($template->loadTheme('admin'));
 
 });
+
 
 $site = new SiteInfo();
 $site_info = $site->getSiteData();
