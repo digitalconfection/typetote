@@ -258,6 +258,14 @@ $site_banner->setPath('admin/site-banner', function() {
 $site_banner = new Route();
 $site_banner->setPath('admin/users', function() {
 
+  $category = new Entity();
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
+    $menu_data = $_POST['user'];
+    $category->saveSetting('users.json', $menu_data);
+  }
+  $template = new Template();
+  $template->renderModuleJs('admin/js/user.js');
+  $page_data = $category->readDataFile('_data/settings/users.json');
   
   $template = new Template();
   $page_content = $template->renderTemplateFile('_modules/admin', 'users.tpl.php');

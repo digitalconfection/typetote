@@ -1,3 +1,28 @@
 <h1><i class="fas fa-user-friends"></i> Users</h1>
 <p>Use the following form to grant site access to other people.</p>
 <br>
+
+<form method="post" enctype="multipart/form-data">
+<div id="user_well" class="page-well">
+<?php if (isset($page_data)) { ?>
+  <?php foreach ($page_data as $key => $user ) { ?>
+
+    <div class="user_obj" id="<?php echo 'ob_'. $key ?>">
+      <input type="text" name="user[<?php echo $key; ?>][email]" placeholder="User Email" value="<?php echo $user['email'] ?>">
+      <span class="x" onclick="removeUser('<?php echo 'ob_'. $key ?>');"><i class="fas fa-ban"></i></span>
+    </div>
+    
+  <?php } ?>
+<?php } else { ?>
+
+  <div class="user_obj">
+    <input type="text" name="user[0][email]" placeholder="User Email">
+  </div>
+
+<?php } ?>
+</div>
+
+<div class="form-actions">
+<input type="button" onclick="addUserRow()" class="alt-btn" value="+ Add User">
+<input type="submit" value="Save">
+</form>

@@ -324,6 +324,13 @@ a.wy_btn:hover {
   align-items: center;
 }
 
+.user_obj {
+  display: grid;
+  grid-column-gap: 1em;
+  grid-template-columns: 1fr .05fr;
+  align-items: center;
+}
+
 /* Media */
 .media_browser {
   display: grid;
