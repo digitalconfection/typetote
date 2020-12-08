@@ -254,5 +254,14 @@ $site_banner->setPath('admin/site-banner', function() {
   include ($template->loadTheme('admin'));
 });
 
+// When user visits: /admin/users
+$site_banner = new Route();
+$site_banner->setPath('admin/users', function() {
+
+  
+  $template = new Template();
+  $page_content = $template->renderTemplateFile('_modules/admin', 'users.tpl.php');
+  include ($template->loadTheme('admin'));
+});
 
 ?>

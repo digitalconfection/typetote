@@ -17,6 +17,7 @@
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/category">Categories <i class="fas fa-book"></i></a></li>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/menu">Menu <i class="fas fa-link"></i></a></li>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/site-banner"">Site Banner<i class="fas fa-bullhorn"></i></a></li>
+        <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/users">Users <i class="fas fa-user-friends"></i></a></li>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/settings">Settings <i class="fas fa-cog"></i></a></li>
         <hr>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>">Back to Site <i class="fas fa-caret-square-left"></i></a></li>
