@@ -261,6 +261,7 @@ $site_banner->setPath('admin/users', function() {
   $category = new Entity();
   if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $menu_data = $_POST['user'];
+    $menu_data = array_map( 'strtolower', $menu_data ); 
     $category->saveSetting('users.json', $menu_data);
   }
   $template = new Template();

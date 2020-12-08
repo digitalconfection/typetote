@@ -23,11 +23,18 @@ $admin_content->setPath('login', function() {
 
     // If post email is set, get key_1 and set to session.
     if (isset($_POST['email'])) {
+
+      $user_data = new Entity();
+      $users = $user_data->readDataFile('_data/settings/users.json');
+      array_push($users,$site_info['admin_email']);
+      $email_address = strtolower($_POST['email']);
+
       $_SESSION[$session_name]['auth']['key_1'] = $_POST['key_1'];
-      if (hash_equals($_POST['email'], $site_info['admin_email']) && hash_equals($_SESSION[$session_name]['auth']['key_1'], $_POST['key_1'])) {
+      if (in_array($email_address, $users) && hash_equals($_SESSION[$session_name]['auth']['key_1'], $_POST['key_1'])) {
         
-        // Timegate the acceptance of the token.
+        // Timegate the acceptance of the token.timeline
         $_SESSION[$session_name]['auth']['login_time_token'] = time();
+        $_SESSION[$session_name]['auth']['user'] = $email_address;
 
         // Generate Token & load form.
         $token_core = hash('sha512',  mt_rand() . $_SERVER["REMOTE_ADDR"] . random_bytes(32) .  $site_info['sec_key_1']);
@@ -38,7 +45,7 @@ $admin_content->setPath('login', function() {
         $_SESSION[$session_name]['auth']['token'] = str_replace('.', '', $token);
 
         // Mail Token:
-        $to = $site_info['admin_email'];
+        $to = $email_address;
         $subject = 'TypeTote Login';
         $txt = "This is your login code, copy and paste the following: \n" . $_SESSION[$session_name]['auth']['token'];
         $headers = "From: no-reply@" . $_SERVER['SERVER_NAME'];
@@ -47,7 +54,7 @@ $admin_content->setPath('login', function() {
         $page_content = $template->renderTemplateFile('_modules/admin', 'login-token-form.tpl.php');
       }
 
-      if ($_POST['email'] !== $site_info['admin_email']) {
+      if (!in_array($email_address, $users)) {
         $message = 'Sorry the email you entered is incorrect. Please try again.';
       }
     }
@@ -64,6 +71,7 @@ $admin_content->setPath('login', function() {
           $_SESSION[$session_name]['auth']['template'] = $site_info['sec_key_2'] . 'admin';
           $_SESSION[$session_name]['auth']['login_ip'] = $_SERVER['REMOTE_ADDR'];
           $_SESSION[$session_name]['auth']['login_time'] = time();
+
           header('Location:' . SiteInfo::baseUrl() . 'admin');
         }
 

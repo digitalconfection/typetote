@@ -17,8 +17,10 @@
       <label for="site_description">Site Description:</label>
       <textarea id="site_description" name="site_description" placeholder="Site Description"><?php if (isset($page_data['site_description'])) { echo $page_data['site_description']; } ?></textarea required>
 
+      <?php if (checkIfAdmin()) { ?>
       <label for="admin_email">Admin Email:</label>
       <input id="admin_email" type="text" placeholder="Admin Email" name="admin_email" value="<?php if (isset($page_data['admin_email'])) { echo $page_data['admin_email']; } ?>" required>
+      <?php }?>
 
       <label for="blog_name">Blog Title:</label>
       <input id="blog_name" type="text" placeholder="Blog Name" name="blog_name" value="<?php if (isset($page_data['blog_name'])) { echo $page_data['blog_name']; } else { echo 'blog'; }?>" required>
@@ -28,6 +30,7 @@
   </div>
   </details>
   <br>
+  <?php if (checkIfAdmin()) { ?>
 
   <div class="page-well">
   <details>
@@ -64,7 +67,7 @@
   </div>
   </details>
   <br>
-
+  
   <div class="page-well">
   <details>
     <summary><b>Key Questions:</b></summary>
@@ -91,6 +94,7 @@
       <label class="ie-form" for="headless"> Enable headless mode</label><br>
       </div>
   </details>
+  <?php } ?>
 
   <div class="form-actions">
     <input type="submit" value="Save">
