@@ -1,5 +1,5 @@
 <h1><i class="fas fa-user-friends"></i> Users</h1>
-<p>Use the following form to grant site access to other people.</p>
+<p>Use the following form to grant site access to other people by entering their email address.</p>
 <br>
 
 <form method="post" enctype="multipart/form-data">
@@ -8,7 +8,7 @@
   <?php foreach ($page_data as $key => $user ) { ?>
 
     <div class="user_obj" id="<?php echo 'ob_'. $key ?>">
-      <input type="text" name="user[<?php echo $key; ?>]" placeholder="User Email" value="<?php echo $user ?>">
+      <input type="text" name="user[<?php echo $key; ?>]" placeholder="Email Address" value="<?php echo $user ?>">
       <span class="x" onclick="removeUser('<?php echo 'ob_'. $key ?>');"><i class="fas fa-ban"></i></span>
     </div>
     
@@ -16,7 +16,7 @@
 <?php } else { ?>
 
   <div class="user_obj">
-    <input type="text" name="user[0]" placeholder="User Email">
+    <input type="text" name="user[0]" placeholder="Email Address">
   </div>
 
 <?php } ?>

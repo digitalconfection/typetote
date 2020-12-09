@@ -26,6 +26,9 @@ $admin_content->setPath('login', function() {
 
       $user_data = new Entity();
       $users = $user_data->readDataFile('_data/settings/users.json');
+      if ($users == null) {
+        $users = array();
+      }
       array_push($users,$site_info['admin_email']);
       $email_address = strtolower($_POST['email']);
 

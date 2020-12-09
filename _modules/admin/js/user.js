@@ -12,7 +12,7 @@ function addUserRow() {
   div.className= 'user_obj';
   div.id = 'ob_'+ obNum.count('user_obj') +'';
   div.innerHTML= `
-      <input type="text" name="user[`+ obNum.count('user_obj')  +`]" placeholder="User Email">
+      <input type="text" name="user[`+ obNum.count('user_obj')  +`]" placeholder="Email Address">
       <span class="x" onclick="removeUser('ob_`+ obNum.count('user_obj') +`');"><i class="fas fa-ban"></i></span>
       `;
   document.getElementById('user_well').appendChild(div);
