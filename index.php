@@ -16,13 +16,12 @@ if (is_file('_data/settings/site_info.json')) {
   // Load Site Info:
   $site_info = new SiteInfo();
   $site_data = $site_info->getSiteData();
-  $site_data['session'] = md5($site_data['site_name']);
 
   // Boostrap modules & Hookss
   include_once('_app/_bootstrap.php');
 
   // Show admin bar to the top of the page when user is logged in.
-  if (isset($_SESSION[$site_data['session']]['template']['admin_bar']) && $_SESSION[$site_data['session']]['template']['admin_bar'] == 'yes') {
+  if (isset($_SESSION[array_keys($_SESSION)[0]]['template']['admin_bar']) && $_SESSION[array_keys($_SESSION)[0]]['template']['admin_bar'] == 'yes') {
     if (strpos($_SERVER['REQUEST_URI'], 'admin') == false) {  
       $admin_bar_data = new Entity();
       // Value defiend in core.module.php
@@ -76,9 +75,9 @@ if (file_exists('dev.php')) {
     }
     </style>';
   
-    if (isset($_SESSION[$site_data['session']]['auth']['token'])) {
+    if (isset($_SESSION[array_keys($_SESSION)[0]]['auth']['token'])) {
       echo '<div class="dev-mode">';
-      echo '<div>Login Code:<br>' . $_SESSION[$site_data['session']]['auth']['token'] . '</div>';
+      echo '<div>Login Code:<br>' . $_SESSION[array_keys($_SESSION)[0]]['auth']['token'] . '</div>';
       echo '<div>' . $dev_msg . '</div></div>';
     }
   }
