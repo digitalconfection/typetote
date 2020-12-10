@@ -38,6 +38,10 @@ if (is_file('_data/settings/site_info.json')) {
   // Dev Mode, to enable create a file called dev.php in the website root.
   if (file_exists('dev.php')) {
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     if(strpos($_SERVER['REQUEST_URI'], 'login') !== false){
 
       $dev_msg = 'Development mode is on! Remove the dev.php file before going to production.';

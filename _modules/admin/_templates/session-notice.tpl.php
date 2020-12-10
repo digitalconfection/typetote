@@ -1,14 +1,16 @@
 <?php
   // After a period of time, a notice will inform the user if they would like to extend the login session.  
-  if ($_POST['session_extend'] == 'Yes') {
-    $_SESSION[array_keys($_SESSION)[0]]['auth']['login_time'] = time();
-    header("Refresh:0");
-  } 
-
-  if ($_POST['session_extend'] == 'No') {
-    $_SESSION['no_extend'] = 'Yes';
-    header("Refresh:0");
-  } 
+  if (isset($_POST['session_extend'])) {
+    if ($_POST['session_extend'] == 'Yes') {
+      $_SESSION[array_keys($_SESSION)[0]]['auth']['login_time'] = time();
+      header("Refresh:0");
+    } 
+  
+    if ($_POST['session_extend'] == 'No') {
+      $_SESSION['no_extend'] = 'Yes';
+      header("Refresh:0");
+    } 
+  }
 ?>
 
 <?php if (!isset($_SESSION['no_extend'])) { ?>
