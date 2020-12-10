@@ -2,7 +2,7 @@
 new Auth();
 $site = new SiteInfo();
 $site_info = $site->getSiteData();
-$session_name = md5($site_info['site_name']);
+$session_name = md5($site->baseUrl());
 
 // Public Login.
 $admin_content = new Route();
@@ -11,7 +11,7 @@ $admin_content->setPath('login', function() {
   $template = new Template();
   $site = new SiteInfo();
   $site_info = $site->getSiteData();
-  $session_name = md5($site_info['site_name']);
+  $session_name = md5($site->baseUrl());
 
 
   // Show login email form.

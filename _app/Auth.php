@@ -5,6 +5,7 @@ class Auth {
   public function __construct()
   {
     session_start();
+    session_regenerate_id(true);
   }
   
   public function logout()
