@@ -3,7 +3,7 @@
 <head>
 <title><?php render_siteTitle($page_data); ?></title>
   <meta name="description" content="<?php render_siteDescription($page_data); ?>">
-  <?php render_themeCSS('motek'); ?>
+  <?php render_themeCSS(); ?>
   <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700|Nunito" rel="stylesheet">
   <?php render_templateMetaHead($page_data); ?>
 </head>
@@ -81,6 +81,6 @@
 
 <div class="wave"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<?php render_themeJS('motek'); ?>
+<?php render_themeJS(); ?>
 </body>
 </html>

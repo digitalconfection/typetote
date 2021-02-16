@@ -35,8 +35,10 @@ function render_templateMetaHead($page_data){
 }
 
 // Render ThemeJS
-function render_themeJS($theme) {
-  $file = '_themes/'. $theme .'/js/script.js';
+function render_themeJS() {
+
+  $theme = (array)SiteInfo::getSiteData()['front_theme'];
+  $file = '_themes/'. $theme[0] .'/css/script.js';
   
   if (file_exists($file)) {
     echo '<script src="' . SiteInfo::baseUrl(). $file .'" type="text/javascript"></script>';
@@ -45,8 +47,9 @@ function render_themeJS($theme) {
 }
 
 // Render ThemeCSS
-function render_themeCSS($theme) {
-  $file = '_themes/'. $theme .'/css/style.css';
+function render_themeCSS() {
+  $theme = (array)SiteInfo::getSiteData()['front_theme'];
+  $file = '_themes/'. $theme[0] .'/css/style.css';
   
   if (file_exists($file)) {
     echo '<link rel="stylesheet" type="text/css" href="'. SiteInfo::baseUrl(). $file .'">';
