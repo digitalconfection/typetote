@@ -353,7 +353,7 @@ class Entity
     // TODO: add a menu check to get order of pages and index.
     foreach ($src as $item) {
       $url = $xml->addChild('url');
-      $url->addChild('loc', 'http:' . SiteInfo::baseUrl() . $item['path']);
+      $url->addChild('loc', SiteInfo::baseUrl() . $item['path']);
       if (empty($item['date_edited'])) {
         $time = strtotime($item['date_published']);
         $time = date('c', $time);
@@ -380,7 +380,7 @@ class Entity
     // Channel section.
     $channel = $rss->addChild('channel');
     $channel->addChild('title', $site_data['site_name']);
-    $channel->addChild('link', 'http:' . SiteInfo::baseUrl());
+    $channel->addChild('link', SiteInfo::baseUrl());
     $channel->addChild('description', $site_data['site_description']);
 
     $data = $this->renderEntityList($manifest);
