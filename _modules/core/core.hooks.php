@@ -15,8 +15,6 @@ function render_templateContent($page_data) {
   include('_templates/template-content.tpl.php');
 }
 
-
-
 // Render the meta head items.
 function render_templateMetaHead($page_data){
   $site_info = new SiteInfo();
@@ -26,9 +24,8 @@ function render_templateMetaHead($page_data){
     $fb_og = $page_data['meta']['featured_image'];
     $twitter_og = $page_data['meta']['featured_image'];
   } else {
-    $fb_og = $site_info->baseUrl() . '_themes/'. $site_data['front_theme'] . '/img/og_facebook.png';
-    $twitter_og = $site_info->baseUrl() . '_themes/'. $site_data['front_theme'] . '/img/og_twitter.png';
-
+    $fb_og = $site_info->baseUrl() . $site_data['front_theme'] . '/img/og_facebook.png';
+    $twitter_og = $site_info->baseUrl() . $site_data['front_theme'] . '/img/og_twitter.png';
   }
 
   include('_templates/meta_head.tpl.php');
@@ -38,7 +35,7 @@ function render_templateMetaHead($page_data){
 function render_themeJS() {
 
   $theme = (array)SiteInfo::getSiteData()['front_theme'];
-  $file = '_themes/'. $theme[0] .'/css/script.js';
+  $file = $theme[0] .'/css/script.js';
   
   if (file_exists($file)) {
     echo '<script src="' . SiteInfo::baseUrl(). $file .'" type="text/javascript"></script>';
@@ -49,7 +46,7 @@ function render_themeJS() {
 // Render ThemeCSS
 function render_themeCSS() {
   $theme = (array)SiteInfo::getSiteData()['front_theme'];
-  $file = '_themes/'. $theme[0] .'/css/style.css';
+  $file = $theme[0] .'/css/style.css';
   
   if (file_exists($file)) {
     echo '<link rel="stylesheet" type="text/css" href="'. SiteInfo::baseUrl(). $file .'">';

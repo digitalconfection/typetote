@@ -28,7 +28,7 @@ class Template {
         return '_modules/core/_templates/headless.tpl.php'; 
 
       } else {
-        return '_themes/' . $site->getSiteData()['front_theme'] . '/templates/' .'page.tpl.php';
+        return $site->getSiteData()['front_theme'] . '/templates/' .'page.tpl.php';
       }
 
     }

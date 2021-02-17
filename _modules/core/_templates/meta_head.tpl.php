@@ -24,4 +24,4 @@
 <meta property="og:description" content="<?php if(isset($page_data['data']['summary'])){ echo $page_data['data']['summary']; } else { echo $site_data['site_description']; } ?>"/>
 <meta property="og:image" content="<?php echo $fb_og; ?>"/>
 
-<link rel="shortcut icon" type="image/x-icon" href="<?php render_baseUrl() ?>_themes/<?php echo $site_data['front_theme']?>/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="<?php render_baseUrl() ?><?php echo $site_data['front_theme']?>/favicon.ico">

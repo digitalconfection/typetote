@@ -12,7 +12,7 @@ if ($front_page->getPath() == '') {
   
   // Load override template.
   $override_template = 'page--front.tpl.php';
-  $override_file = '_themes/' .   $site_data['front_theme'] . '/templates/' . $override_template;
+  $override_file = $site_data['front_theme'] . '/templates/' . $override_template;
   
   if (is_file($override_file)) {
     $page_data['template_type'] = 'file';
@@ -44,7 +44,7 @@ if (!empty($manifest)){
       $GLOBALS['entity_id'] = $item['entity_id'];
 
       $override_template = 'page--' . $page_data['meta']['path'] . '.tpl.php';
-      $override_file = '_themes/' .   $site_data['front_theme'] . '/templates/' . $override_template;
+      $override_file = $site_data['front_theme'] . '/templates/' . $override_template;
 
       if (is_file($override_file)) {
         $page_data['template_type'] = 'file';
@@ -96,7 +96,7 @@ if (is_array($categories)) {
     
       // Load override template.
       $override_template = 'page--' . $path['path'] . '.tpl.php';
-      $override_file = '_themes/' .   $site_data['front_theme'] . '/tempaltes/' . $override_template;
+      $override_file = $site_data['front_theme'] . '/tempaltes/' . $override_template;
       if (is_file($override_file)) {
         $page_content = $override_file;
       }
@@ -132,7 +132,7 @@ $blog->setPath($site_data['blog_path'], function() {
 
   // Load override template.
   $override_template = 'page--' . $site_data['blog_name'] . '.tpl.php';
-  $override_file = '_themes/' .   $site_data['front_theme'] . '/tempaltes/' . $override_template;
+  $override_file = $site_data['front_theme'] . '/tempaltes/' . $override_template;
   if (is_file($override_file)) {
     $page_content = $override_file;
   }

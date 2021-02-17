@@ -2,6 +2,11 @@
 // Unless explicitly set everything is a 404 (will need a dynamic page route)
 http_response_code(404);
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 // Load Classes
 include_once('_app/_autoload.php');
 
@@ -26,7 +31,7 @@ if (is_file('_data/settings/site_info.json')) {
 
     $page_data['status'] = '404';
     $override_template = 'page--404.tpl.php';
-    $override_file = '_themes/' .   $site_data['front_theme'] . '/' . $override_template;
+    $override_file = $site_data['front_theme'] . '/' . $override_template;
     if (is_file($override_file)) {
       $page_content = $override_file;
     }

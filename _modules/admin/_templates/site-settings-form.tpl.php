@@ -39,14 +39,20 @@
     <div class="page-content">
       <label for="front_theme">Front Theme:</label>    
       <select id="front_theme" name="front_theme" required>
-        <?php $themes = preg_grep('/^([^.])/', scandir('_themes')); ?>
-        <?php foreach($themes as $theme_name) { ?>
-          <?php if ($page_data['front_theme'] == $theme_name) { ?>
-            <option value="<?php echo $theme_name ?>" selected="selected"><?php echo $theme_name ?></option>
+
+      <!-- Logic here would need to look in two places. _themes and _modules/core/themes with the values
+        Then here we output the full path. 
+       -->
+       
+        <?php foreach ($page_data['themes'] as $theme) { ?>
+          <?php if ($theme['path'] == $page_data['front_theme']) { ?>
+            <option value="<?php echo $theme['path']; ?>" selected="selected"><?php echo $theme['name']; ?></option>;
           <?php } else { ?>
-            <option value="<?php echo $theme_name ?>"><?php echo $theme_name ?></option>
+            <option value="<?php echo $theme['path']; ?>"><?php echo $theme['name']; ?></option>;
           <?php } ?>
+
         <?php } ?>
+    
       </select>
     </div>
   </div>
@@ -72,13 +78,13 @@
   <details>
     <summary><b>Key Questions:</b></summary>
     <br>
-    <p>The following questions are part of TypeTotes security login process. We recommend changing these answers over time. What you see are hashed values, and you do not need to remember what you wrote previously.</p>
+    <p>The following questions are part of TypeTotes security login process. We recommend changing these answers over time. What you see are hashed values, and you do not need to remember what you wrote previously. If you do change these values you will need to log back in.</p>
     <div class="page-content">
       <label for="sec_key_1">Favorite food?</label>
-      <input id="sec_key_1" type="text" name="sec_key_1" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_1'])) { echo $page_data['sec_key_1']; } ?>" required>
+      <input id="sec_key_1" type="password" name="sec_key_1" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_1'])) { echo $page_data['sec_key_1']; } ?>" required>
       
       <label for="sec_key_2">What is the cutest animal?</label>
-      <input id="sec_key_2" type="text" name="sec_key_2" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_2'])) { echo $page_data['sec_key_2']; } ?>" required>
+      <input id="sec_key_2" type="password" name="sec_key_2" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_2'])) { echo $page_data['sec_key_2']; } ?>" required>
       
       </div>
   </div>
