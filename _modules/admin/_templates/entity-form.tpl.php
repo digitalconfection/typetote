@@ -58,35 +58,38 @@
           // render list of avalible tags.
           $tag_data = new Entity();
           $tags = $tag_data->readDataFile('_data/manifests/content_manifests.json');
+          
+          if ($tags) {
 
-          $tag_list = array();
-          foreach ($tags as $tag) {
-            $t = $tag['tags'];
-            
-            // Remove empty
-            if ($tag['tags'] == '') {
-              continue;
-            }
-
-            // If multiple tags are found, break them up.
-            if (strpos($tag['tags'], ',') !== false) {
-
-              $sub_tags = explode(',' ,$tag['tags']);
-              foreach ($sub_tags as $sub_tag) {
-                $tag_list[] = str_replace(' ', '', $sub_tag);
+            $tag_list = array();
+            foreach ($tags as $tag) {
+              $t = $tag['tags'];
+              
+              // Remove empty
+              if ($tag['tags'] == '') {
+                continue;
               }
 
-            } else {
-              $tag_list[] = $t;
-            }
-          }
+              // If multiple tags are found, break them up.
+              if (strpos($tag['tags'], ',') !== false) {
 
-          $tag_list = array_unique($tag_list);
-          echo '<ul class="existing_tags">';
-          foreach ($tag_list as $key => $value) {
-            echo '<li id="tag_'. $key .'" onClick="tagClick(this.id)"><i class="fa fa-tag" aria-hidden="true"></i> ' . $value . '</li>';
+                $sub_tags = explode(',' ,$tag['tags']);
+                foreach ($sub_tags as $sub_tag) {
+                  $tag_list[] = str_replace(' ', '', $sub_tag);
+                }
+
+              } else {
+                $tag_list[] = $t;
+              }
+            }
+
+            $tag_list = array_unique($tag_list);
+            echo '<ul class="existing_tags">';
+            foreach ($tag_list as $key => $value) {
+              echo '<li id="tag_'. $key .'" onClick="tagClick(this.id)"><i class="fa fa-tag" aria-hidden="true"></i> ' . $value . '</li>';
+            }
+            echo '</ul>';
           }
-          echo '</ul>';
         ?>
         
         <label for="body">Summery:</label> 

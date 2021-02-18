@@ -300,6 +300,10 @@ class Entity
   }
 
   public function paginate($array, $count = null) {
+    
+    if ($array) {
+
+    
     if (isset($count)) {
         $output = array_chunk($array, $count);
       }
@@ -313,6 +317,7 @@ class Entity
       );
 
       return $entity_list;
+    }
   }
 
   /**

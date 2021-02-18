@@ -58,9 +58,11 @@ class Media
   public function browse_files()
   {
     // Scan file directory, render the images.
-    $files = preg_grep('/^([^.])/', scandir($this->file_path));
-    return $files;
-    
+    if (is_dir($this->file_path)) {
+      $files = preg_grep('/^([^.])/', scandir($this->file_path));
+      return $files;
+    }
+  
   }
 
 }

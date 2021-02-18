@@ -112,12 +112,23 @@ $admin_delete->setQueryPath('admin/delete', function() {
     }
   }
 
-  if (isset($_POST['no'])) {
-    $path->goToPath('admin');
-  }
-  
   $page_data = $content->loadEntity($id->getQueryPath());
   $page_data['base_url'] = $template->baseUrl();
+
+  if (isset($_POST['no'])) {
+    // If no title is found then its a media asset.
+    if (!isset($page_data['title'])) {
+      $path->goToPath('admin/media');
+    } else {
+      $path->goToPath('admin');
+    }
+  }
+  
+  
+  if (!isset($page_data['title'])) {
+    $page_data['title'] = $id->getQueryPath();
+  }
+
   $page_content = $template->renderTemplateFile('_modules/admin', 'entity-delete-form.tpl.php');
   include ($template->loadTheme('admin'));
 });

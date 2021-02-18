@@ -11,36 +11,38 @@ $search_results->setPath('search', function() {
   );
   $raw_data = $search_data->renderEntityList('_data/manifests/content_manifests.json', $options);
 
-  $search_array = array();
-  foreach ($raw_data as $data) {
+  if ($raw_data) {
+    $search_array = array();
+    foreach ($raw_data as $data) {
 
-    $i['title'] = strtolower($data['title']);
-    $i['body'] = strtolower($data['body']);
-    $i['summery'] = strtolower($data['summery']);
-    $i['link'] = strtolower($data['meta']['path']);
-    $i['tags'] = strtolower($data['meta']['tags']);
+      $i['title'] = strtolower($data['title']);
+      $i['body'] = strtolower($data['body']);
+      $i['summery'] = strtolower($data['summery']);
+      $i['link'] = strtolower($data['meta']['path']);
+      $i['tags'] = strtolower($data['meta']['tags']);
 
-    $search_array[] = $i;
-  }
+      $search_array[] = $i;
+    }
 
-  $search_results = array();
-  $term = strtolower($query->getQuery('q'));
+    $search_results = array();
+    $term = strtolower($query->getQuery('q'));
 
-  if (!empty($term)) {
-    foreach($search_array as $result){
+    if (!empty($term)) {
+      foreach($search_array as $result){
 
-      if (strpos($result['title'], $term) !== false or strpos($result['body'], $term) !== false){
-  
-        $search_results[] = $result;
-        $page_data['status'] = 'yes';
-  
-      } else {
-  
-        $page_data['status'] = 'no';
+        if (strpos($result['title'], $term) !== false or strpos($result['body'], $term) !== false){
+
+          $search_results[] = $result;
+          $page_data['status'] = 'yes';
+
+        } else {
+
+          $page_data['status'] = 'no';
+        }
       }
     }
+    
   }
- 
 
   // If $search_results is not empty, return as $page_data for template rendering.
   $page_data['query'] = $query->getQuery('q');
