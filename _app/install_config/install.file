@@ -15,7 +15,7 @@
     $site_info_data['admin_email'] = strtolower($_POST['admin_email']);
     $site_info_data['blog_name'] = 'Blog';
     $site_info_data['blog_path'] = 'blog';
-    $site_info_data['front_theme'] = 'motek';
+    $site_info_data['front_theme'] = '_modules/core/_themes/motek';
     $site_info_data['site_slogan'] = 'Just Another TypeTote Site';
     $site_info_data['sec_key_1'] = password_hash($_POST['sec_key_1'], PASSWORD_DEFAULT);
     $site_info_data['sec_key_2'] = password_hash($_POST['sec_key_2'], PASSWORD_DEFAULT);
