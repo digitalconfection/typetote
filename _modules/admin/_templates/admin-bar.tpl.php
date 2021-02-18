@@ -27,7 +27,7 @@
 <div id="admin-bar" class="admin-bar">
   <a href="<?php echo SiteInfo::baseUrl(); ?>admin/"><i class="fas fa-home"></i> <span>Admin</span></a>
   
-  <?php if ($page_data) { ?>
+  <?php if (isset($page_data)) { ?>
     <a href="<?php echo SiteInfo::baseUrl() . 'admin/edit?q=' . $page_data['meta']['entity_id']; ?>"><i class="fas fa-pen"></i> <span>Edit</span></a>
   <?php } ?>
 

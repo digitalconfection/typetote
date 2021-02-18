@@ -2,11 +2,6 @@
 // Unless explicitly set everything is a 404 (will need a dynamic page route)
 http_response_code(404);
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 // Load Classes
 include_once('_app/_autoload.php');
 
@@ -78,7 +73,9 @@ if (is_file('_data/settings/site_info.json')) {
     if (strpos($_SERVER['REQUEST_URI'], 'admin') == false) {  
       $admin_bar_data = new Entity();
       // Value defiend in core.module.php
-      $page_data = $admin_bar_data->loadEntity($GLOBALS['entity_id']);
+      if (isset($GLOBALS['entity_id'])) {
+        $page_data = $admin_bar_data->loadEntity($GLOBALS['entity_id']);
+      }
       include('_modules/admin/_templates/admin-bar.tpl.php');
     }
   }

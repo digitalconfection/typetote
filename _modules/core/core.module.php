@@ -41,7 +41,10 @@ if (!empty($manifest)){
       $page_data['template_type'] = 'content';
 
       // This is for the admin bar to call the data.
-      $GLOBALS['entity_id'] = $item['entity_id'];
+      if ($item['entity_id']) {
+        $GLOBALS['entity_id'] = $item['entity_id'];
+
+      }
 
       $override_template = 'page--' . $page_data['meta']['path'] . '.tpl.php';
       $override_file = $site_data['front_theme'] . '/templates/' . $override_template;
