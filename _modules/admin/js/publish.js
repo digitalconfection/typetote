@@ -30,6 +30,13 @@ function copyText(from, to) {
   document.getElementById(to).innerHTML = output;
 }
 
+var hrefs = document.getElementsByClassName('wy_btn');
+for (var i = 0; i < hrefs.length; i++) {
+ hrefs.item(i).addEventListener('click', function(e){
+  copyText('wysiwyg_editor', 'page_data');
+ });
+}
+
 // switchBlockEidtor
 function switchBlockEidtor() {
   
