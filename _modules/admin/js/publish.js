@@ -30,6 +30,7 @@ function copyText(from, to) {
   document.getElementById(to).innerHTML = output;
 }
 
+// Run copy function when WYSIWYG button is activated.
 var hrefs = document.getElementsByClassName('wy_btn');
 for (var i = 0; i < hrefs.length; i++) {
  hrefs.item(i).addEventListener('click', function(e){
