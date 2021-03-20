@@ -3,8 +3,7 @@
  * The core module is used to do basic route and template rendering.
  */
 $theme = new Template();
-$site_info = new Entity();
-$site_data = $site_info->readDataFile('_data/settings/site_info.json');
+$site_data = SiteInfo::getSiteData();
 
 // Front Page.
 $front_page = new Route();
@@ -60,89 +59,54 @@ if (!empty($manifest)){
   }
 }
 
-// Category Listing
-$categories = $site_info->readDataFile('_data/settings/category.json');
-if (is_array($categories)) {
+// This renders a content list, i.e. blog index or category index.
+$content_list_data = SiteInfo::getSiteContentListData();
+foreach ($content_list_data as $list_page) {
 
-  foreach ($categories as $category_page) {
+  $category = new Route();
+  $category->setPath($list_page['path'], function() {
 
-    $category = new Route();
-    $category->setPath($category_page['path'], function() {
+    $site_info = new SiteInfo();
+    $site_data = $site_info->getSiteData();
+    $theme = new Template();
+    $content = new Entity();
+    $query = new Route();
 
-      $site_info = new SiteInfo();
-      $site_data = $site_info->getSiteData();
-      $theme = new Template();
-      $content = new Entity();
-      $query = new Route();
+    $path_data = $site_info->getSiteContentListData();
 
-      $path_data = $content->readDataFile('_data/settings/category.json');
-
-      $path = array();
-      foreach ($path_data as $item) {
-        if ($item['path'] == $query->getPathName()) {
-          $path['name'] = $item['name'];
-          $path['path'] = $item['path'];
-        }
+    $path = array();
+    foreach ($path_data as $item) {
+      if ($item['path'] == $query->getPathName()) {
+        $path['name'] = $item['name'];
+        $path['path'] = $item['path'];
       }
-           
-      $options = array(
-        'status' => 'published',
-        'type' => 'post',
-        'category' => $path['path'],
-      );
-      $content_list = $content->renderEntityList('_data/manifests/content_manifests.json', $options);
-      $page_data['items'] = $content->paginate($content_list);
-      $page_data['template_type'] = 'list';
-      $page_data['title'] = ucfirst($path['name']);
-      $page_data['pagination_num'] = $query->getQuery('pg');
-      $page_data['base_url'] = $theme->baseUrl() . $path['path'] .'?';
-    
-      // Load override template.
-      $override_template = 'page--' . $path['path'] . '.tpl.php';
-      $override_file = $site_data['front_theme'] . '/tempaltes/' . $override_template;
-      if (is_file($override_file)) {
-        $page_content = $override_file;
-      }
-    
-      http_response_code(200);
-      include ($theme->loadTheme('main'));
+    }
 
-    });
-  }
+    $options = array(
+      'status' => 'published',
+      'type' => 'post',
+      'category' => $path['path'],
+    );
+    
+    $content_list = $content->renderEntityList('_data/manifests/content_manifests.json', $options);
+    $page_data['items'] = $content->paginate($content_list);
+    $page_data['template_type'] = 'list';
+    $page_data['title'] = ucfirst($path['name']);
+    $page_data['pagination_num'] = $query->getQuery('pg');
+    $page_data['base_url'] = $theme->baseUrl() . $path['path'] .'?';
+  
+    // Load override template.
+    $override_template = 'page--' . $path['path'] . '.tpl.php';
+    $override_file = $site_data['front_theme'] . '/templates/' . $override_template;
+    if (is_file($override_file)) {
+      $page_content = $override_file;
+    }
+  
+    http_response_code(200);
+    include ($theme->loadTheme('main'));
+
+  });
 }
-
-// Blog Index Page
-$blog = new Route();
-$blog->setPath($site_data['blog_path'], function() {
-
-  $site_info = new SiteInfo();
-  $site_data = $site_info->getSiteData();
-  $theme = new Template();
-  $content = new Entity();
-  $query = new Route();
-
-  $options = array(
-    'status' => 'published',
-    'type' => 'post',
-    'category' => $site_data['blog_path'],
-  );
-  $content_list = $content->renderEntityList('_data/manifests/content_manifests.json', $options);
-  $page_data['items'] = $content->paginate($content_list);
-  $page_data['template_type'] = 'list';
-  $page_data['title'] = ucfirst($site_data['blog_name']);
-  $page_data['pagination_num'] = $query->getQuery('pg');
-  $page_data['base_url'] = $theme->baseUrl() . $site_data['blog_name'] .'?';
-
-  // Load override template.
-  $override_template = 'page--' . $site_data['blog_name'] . '.tpl.php';
-  $override_file = $site_data['front_theme'] . '/tempaltes/' . $override_template;
-  if (is_file($override_file)) {
-    $page_content = $override_file;
-  }
-
-  http_response_code(200);
-  include ($theme->loadTheme('main'));
-});
 
 // Tags
 $tags = new Route();

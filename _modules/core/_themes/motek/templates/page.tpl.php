@@ -48,18 +48,21 @@
         render_templateList($page_data); 
       ?>
     <?php } ?>
+    <!-- End remove block -->
 
-    <!-- This line renders a page overide i.e. page--front.tpl.php -->
-    <?php if (isset($page_content)) { include($page_content); } ?>
-  
-    <!-- This line renders the content template, i.e. a post or page. -->
-    <?php if (isset($page_data['template_type']) && $page_data['template_type'] == 'content') { ?>
-      <?php render_templateContent($page_data); ?>
-    <?php } ?>
+      <!-- This line renders a page overide i.e. page--front.tpl.php otherwise load defaults. -->
+      <?php if (isset($page_content)) { include($page_content); }  else {?>
+    
+      <!-- This line renders the content template, i.e. a post or page. -->
+      <?php if (isset($page_data['template_type']) && $page_data['template_type'] == 'content') { ?>
+        <?php render_templateContent($page_data); ?>
+      <?php } ?>
 
-    <!-- This line renders a list page, i.e. blog, tag or category -->
-    <?php if (isset($page_data['template_type']) && $page_data['template_type'] == 'list') { ?>
-      <?php  render_templateList($page_data); ?>
+      <!-- This line renders a list page, i.e. blog, tag or category -->
+      <?php if (isset($page_data['template_type']) && $page_data['template_type'] == 'list') { ?>
+        <?php  render_templateList($page_data); ?>
+      <?php } ?>
+
     <?php } ?>
 
     <!-- This renders the 404 page. Customize as you see fit. -->

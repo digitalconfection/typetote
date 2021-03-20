@@ -18,10 +18,24 @@ class SiteInfo {
     }
   }
 
+  // Method used to get site data.
   public static function getSiteData() {
     
     $data = Entity::readDataFile('_data/settings/site_info.json');
     return $data;
+  }
+
+  // This method gets the list of site categories that build the index pages.
+  public static function getSiteContentListData() {
+    $site_data = Entity::readDataFile('_data/settings/site_info.json');
+    $site_blog = array(array('name' => $site_data['blog_name'], 'path' => $site_data['blog_path']));
+
+    $categories = Entity::readDataFile('_data/settings/category.json');
+    if (!empty($categories)) {
+      return array_merge($site_blog, $categories);
+    } else  {
+      return $site_blog;
+    }
   }
 
 }
