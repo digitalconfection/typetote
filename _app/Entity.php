@@ -126,6 +126,11 @@ class Entity
         $data['meta']['path'] = '';
       }
 
+      // Pages can not be part of a category so reset that value if ever selected
+      if ($data['meta']['entity_type'] == 'page') {
+        $data['meta']['category'] = '';
+      }
+
       // If status is set to draft, do not create a menu path.
       if ($data['meta']['entity_status'] == 'draft') {
         $data['meta']['path'] = '';

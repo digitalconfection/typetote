@@ -45,12 +45,21 @@ if (!empty($manifest)){
 
       }
 
-      $override_template = 'page--' . $page_data['meta']['path'] . '.tpl.php';
-      $override_file = $site_data['front_theme'] . '/templates/' . $override_template;
+      // Here we do a check, if there is a page type we show that only if there is no path override.
 
-      if (is_file($override_file)) {
+      $override_page_content = 'page--' . $page_data['meta']['path'] . '.tpl.php';
+      $override_page_type = 'page--type--' . $page_data['meta']['category'] . '.tpl.php';
+
+      if (is_file($site_data['front_theme'] . '/templates/' . $override_page_content)) {
         $page_data['template_type'] = 'file';
-        $page_content = $override_file;
+        $page_content = $site_data['front_theme'] . '/templates/' . $override_page_content;
+      } else {
+        
+        if (is_file($site_data['front_theme'] . '/templates/' . $override_page_type)) {
+          $page_data['template_type'] = 'file';
+          $page_content = $site_data['front_theme'] . '/templates/' . $override_page_type;
+        }
+      
       }
 
       http_response_code(200);
