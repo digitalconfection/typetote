@@ -14,7 +14,7 @@ if (isset($page_data['items']['content'][0])) {
 ?>
 
 <div class="list-well">
-<?php if (isset($page_data['title'])) { ?>
+<?php if (isset($page_data['title']) and !isset($no_title)) { ?>
   <h1><?php echo $page_data['title']; ?></h1>
 <?php } ?>
 

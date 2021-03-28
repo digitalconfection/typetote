@@ -6,7 +6,7 @@
  */
 
 // Render a list of content. Used for summaries.
-function render_templateList($page_data) {
+function render_templateList($page_data, $no_title = null) {
   include('_templates/template-list.tpl.php');
 }
 
