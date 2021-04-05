@@ -360,7 +360,19 @@ class Entity
     http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"></urlset>';
     $xml = new SimpleXMLElement($xml_header);
     
-    // TODO: add a menu check to get order of pages and index.
+
+    // Add homepage
+    $homepage = $xml->addChild('url');
+    $homepage->addChild('loc', SiteInfo::baseUrl());
+    $homepage->addChild('lastmod', date('Y-m-dTH:i:sP', time()));
+
+    // Addd blogpage to sitemap
+    $blog_path = SiteInfo::baseUrl() . SiteInfo::getSiteData()['blog_path'];
+    $blogpage = $xml->addChild('url');
+    $blogpage->addChild('loc', $blog_path);
+    $blogpage->addChild('lastmod', date('Y-m-dTH:i:sP', time()));
+
+    // TODO: add a menu check for category pages.
     foreach ($src as $item) {
       $url = $xml->addChild('url');
       $url->addChild('loc', SiteInfo::baseUrl() . $item['path']);
