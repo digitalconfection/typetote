@@ -364,13 +364,13 @@ class Entity
     // Add homepage
     $homepage = $xml->addChild('url');
     $homepage->addChild('loc', SiteInfo::baseUrl());
-    $homepage->addChild('lastmod', date('Y-m-dTH:i:sP', time()));
+    $homepage->addChild('lastmod', date('c', time()));
 
     // Addd blogpage to sitemap
     $blog_path = SiteInfo::baseUrl() . SiteInfo::getSiteData()['blog_path'];
     $blogpage = $xml->addChild('url');
     $blogpage->addChild('loc', $blog_path);
-    $blogpage->addChild('lastmod', date('Y-m-dTH:i:sP', time()));
+    $blogpage->addChild('lastmod', date('c', time()));
 
     // TODO: add a menu check for category pages.
     foreach ($src as $item) {
