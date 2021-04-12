@@ -128,4 +128,40 @@ function render_ga() {
   }
 }
 
+// Render site breadcrumb.
+function render_breadcrumbs($homelink = null) {
+  
+  global $page_data;
+  $site_info =  new SiteInfo();
+  $breadcrumbs = str_replace('/', ' ', $_SERVER['REQUEST_URI']);
+  $links = explode(' ', trim($breadcrumbs));
+  $length = count($links);
+  $x = 1;
+
+  if ($homelink !== null) {
+    $first_breadcrumb = $homelink;
+  } else {
+    $first_breadcrumb = 'Home';
+  }
+
+  // Only show if not on homepage.
+  if ($length !== 1 and $page_data['status'] !== '404') {
+
+    echo '<br><div class="breadcrumbs"><ol>';
+      foreach ($links as $key => $link) {
+        if ($key == 0) {
+          echo '<li><a href="'.  $site_info->baseUrl() . '">'. ucfirst($first_breadcrumb) .'</a></li>';
+        } else if ($x === $length) {
+          echo '<li>' . ucfirst($link) . '</li>';
+        } 
+        else {
+          echo '<li><a href="'.  $site_info->baseUrl() . $link .'">' . ucfirst($link) . '</a></li>';
+        }
+        $x++;
+      }
+    echo '</ol></div>';
+  }
+
+}
+
 ?>

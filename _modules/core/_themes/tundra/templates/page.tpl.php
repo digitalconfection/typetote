@@ -64,6 +64,7 @@
 </main>
 
 <footer>
+  <?php render_breadcrumbs(); ?>
   <div class="container">
     <div class="cc">
       ©<?php echo date('Y') . ' '?><a href="<?php render_baseUrl(); ?>"><?php echo $site_data['site_name']; ?></a>.

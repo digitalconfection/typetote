@@ -74,6 +74,8 @@
   </main>
 
   <footer>
+    <?php render_breadcrumbs(); ?>
+
     <div class="cc">
       <span class="l">©<?php echo date('Y') . ' ' .$site_data['site_name']; ?></span><br>
       Proudly built with <a href="https://typetote.com">TypeTote</a>.

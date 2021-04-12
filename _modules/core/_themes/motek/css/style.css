@@ -116,6 +116,30 @@ main {
   text-decoration: none;
 }
 
+.breadcrumbs ol {
+  font-size: medium;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs li {
+  display: inline;
+  margin-right: 1.5rem;
+}
+
+.breadcrumbs li:after {
+  content: '/';
+  position: absolute;
+  margin-left: .5rem;
+}
+
+.breadcrumbs li:last-child:after {
+  content: '';
+  position: unset;
+  margin: unset;
+}
+
+
 .logo {
   Font-Family: 'Libre Baskerville', Serif;
   position: relative;
