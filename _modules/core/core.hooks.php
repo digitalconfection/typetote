@@ -128,13 +128,20 @@ function render_ga() {
   }
 }
 
-// Render site breadcrumb.
+// Render Breadcrumbs
 function render_breadcrumbs($homelink = null) {
   
   global $page_data;
   $site_info =  new SiteInfo();
-  $breadcrumbs = str_replace('/', ' ', $_SERVER['REQUEST_URI']);
-  $links = explode(' ', trim($breadcrumbs));
+  $dir = basename(dirname($_SERVER['PHP_SELF']));
+
+  if ($dir) {
+    $breadcrumbs = ltrim($_SERVER['REQUEST_URI'], '/');
+  } else {
+    $breadcrumbs = $_SERVER['REQUEST_URI'];
+  }
+  
+  $links = explode('/', $breadcrumbs);
   $length = count($links);
   $x = 1;
 
@@ -144,18 +151,24 @@ function render_breadcrumbs($homelink = null) {
     $first_breadcrumb = 'Home';
   }
 
+  $links[0] = '';
+  $front_page = new Route();
+
   // Only show if not on homepage.
-  if ($length !== 1 and $page_data['status'] !== '404') {
+  if ($front_page->getPath() !== '' and $page_data['status'] !== '404') {
 
     echo '<br><div class="breadcrumbs"><ol>';
       foreach ($links as $key => $link) {
+
+        $link_text = str_replace('-', ' ', $link);
+
         if ($key == 0) {
           echo '<li><a href="'.  $site_info->baseUrl() . '">'. ucfirst($first_breadcrumb) .'</a></li>';
         } else if ($x === $length) {
-          echo '<li>' . ucfirst($link) . '</li>';
+          echo '<li>' . ucwords($link_text) . '</li>';
         } 
         else {
-          echo '<li><a href="'.  $site_info->baseUrl() . $link .'">' . ucfirst($link) . '</a></li>';
+          echo '<li><a href="'.  $site_info->baseUrl() . $link .'">' . ucfirst($link_text) . '</a></li>';
         }
         $x++;
       }
