@@ -106,7 +106,14 @@ function render_siteTitle($page_data ) {
 // Render site Description
 function render_siteDescription($page_data) {
   global $site_data;
-  if(isset($page_data['data']['summary'])){ echo $page_data['data']['summary']; } else { echo $site_data['site_description']; }
+  $path = new Route();
+  if(isset($page_data['summery'])){ 
+    echo $page_data['summery']; 
+  }
+  else if ($path->getPath() == $site_data['blog_path'] && $site_data['blog_description'] !== '') {
+    echo $site_data['blog_description']; 
+  }
+  else { echo $site_data['site_description']; }
 }
 
 // Render Base Url

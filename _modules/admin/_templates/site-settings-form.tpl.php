@@ -24,8 +24,12 @@
 
       <label for="blog_name">Blog Title:</label>
       <input id="blog_name" type="text" placeholder="Blog Name" name="blog_name" value="<?php if (isset($page_data['blog_name'])) { echo $page_data['blog_name']; } else { echo 'blog'; }?>" required>
+      
+      <label for="blog_description">Blog Description:</label>
+      <textarea id="blog_description" name="blog_description" placeholder="Blog Description"><?php if (isset($page_data['blog_description'])) { echo $page_data['blog_description']; } ?></textarea>
       <div class="cc">Blog Path: <a href="<?php echo Siteinfo::baseUrl() . $page_data['blog_path']; ?>"><?php echo $page_data['blog_path']; ?></a></div>
 
+    
     </div>
   </div>
   </details>
