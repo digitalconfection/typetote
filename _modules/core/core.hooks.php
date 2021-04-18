@@ -164,7 +164,7 @@ function render_breadcrumbs($homelink = null) {
   $front_page = new Route();
 
   // Only show if not on homepage.
-  if ($front_page->getPath() !== '' and $page_data['status'] !== '404') {
+  if ($front_page->getPath() !== '' xor http_response_code() == '404') {
 
     echo '<br><div class="breadcrumbs"><ol>';
       foreach ($links as $key => $link) {
