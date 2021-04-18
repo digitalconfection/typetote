@@ -24,3 +24,7 @@
 <meta property="og:image" content="<?php echo $fb_og; ?>"/>
 
 <link rel="shortcut icon" type="image/x-icon" href="<?php render_baseUrl() ?><?php echo $site_data['front_theme']?>/favicon.ico">
+
+<?php if ((http_response_code() == '200')) { ?>
+  <link rel="canonical" href="<?php echo $canonical; ?>"/>
+<?php } ?>

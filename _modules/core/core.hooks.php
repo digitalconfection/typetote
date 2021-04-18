@@ -19,7 +19,8 @@ function render_templateContent($page_data) {
 function render_templateMetaHead($page_data){
   $site_info = new SiteInfo();
   $site_data = $site_info->getSiteData();
-
+  $path = new Route();
+  
   if (isset($page_data['meta']['featured_image'])) {
     $fb_og = $page_data['meta']['featured_image'];
     $twitter_og = $page_data['meta']['featured_image'];
@@ -27,6 +28,8 @@ function render_templateMetaHead($page_data){
     $fb_og = $site_info->baseUrl() . $site_data['front_theme'] . '/img/og_facebook.png';
     $twitter_og = $site_info->baseUrl() . $site_data['front_theme'] . '/img/og_twitter.png';
   }
+
+  $canonical = $site_info->baseUrl() . $path->getPath();
   include('_templates/meta_head.tpl.php');
 }
 
