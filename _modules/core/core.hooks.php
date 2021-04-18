@@ -27,7 +27,6 @@ function render_templateMetaHead($page_data){
     $fb_og = $site_info->baseUrl() . $site_data['front_theme'] . '/img/og_facebook.png';
     $twitter_og = $site_info->baseUrl() . $site_data['front_theme'] . '/img/og_twitter.png';
   }
-
   include('_templates/meta_head.tpl.php');
 }
 

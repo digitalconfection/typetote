@@ -13,14 +13,14 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<?php render_siteTitle($page_data);?>">
-<meta name="twitter:description" content="<?php if(isset($page_data['data']['summary'])){ echo $page_data['data']['summary']; } else { echo $site_data['site_description']; } ?>">
+<meta name="twitter:description" content="<?php render_siteDescription($page_data); ?>">
 <meta name="twitter:image" content="<?php echo $twitter_og; ?>">
 
 <!-- Facebook Card -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php render_baseUrl() ?>" />
 <meta property="og:title" content=""<?php render_siteTitle($page_data);?>" />
-<meta property="og:description" content="<?php if(isset($page_data['data']['summary'])){ echo $page_data['data']['summary']; } else { echo $site_data['site_description']; } ?>"/>
+<meta property="og:description" content="<?php render_siteDescription($page_data); ?>"/>
 <meta property="og:image" content="<?php echo $fb_og; ?>"/>
 
 <link rel="shortcut icon" type="image/x-icon" href="<?php render_baseUrl() ?><?php echo $site_data['front_theme']?>/favicon.ico">
