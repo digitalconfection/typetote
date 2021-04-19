@@ -42,22 +42,31 @@ if (!empty($manifest)){
       // This is for the admin bar to call the data.
       if ($item['entity_id']) {
         $GLOBALS['entity_id'] = $item['entity_id'];
-
       }
 
-      // Here we do a check, if there is a page type we show that only if there is no path override.
+      // Here we do a check, if there an override file in the template.
+      $override_page_by_path = 'page--' . $page_data['meta']['path'] . '.tpl.php';
+      $override_page_by_category = 'page--category--' . $page_data['meta']['category'] . '.tpl.php';
+      $override_page_by_entity = 'page--entity--' . $page_data['meta']['entity_type'] . '.tpl.php';
+      $theme_template_path = $site_data['front_theme'] . '/templates/';
 
-      $override_page_content = 'page--' . $page_data['meta']['path'] . '.tpl.php';
-      $override_page_type = 'page--type--' . $page_data['meta']['category'] . '.tpl.php';
-
-      if (is_file($site_data['front_theme'] . '/templates/' . $override_page_content)) {
+      // First check if there is a path override.
+      if (is_file($theme_template_path . $override_page_by_path)) {
         $page_data['template_type'] = 'file';
-        $page_content = $site_data['front_theme'] . '/templates/' . $override_page_content;
+        $page_content = $theme_template_path . $override_page_by_path;
       } else {
         
-        if (is_file($site_data['front_theme'] . '/templates/' . $override_page_type)) {
+        // If no path override is set, then check by category type.
+        if (is_file($theme_template_path . $override_page_by_category)) {
           $page_data['template_type'] = 'file';
-          $page_content = $site_data['front_theme'] . '/templates/' . $override_page_type;
+          $page_content = $theme_template_path . $override_page_by_category;
+        } else {
+          
+          // If not category ovveride is set, then check by entity type. Otherwise load defualt. 
+          if (is_file($theme_template_path . $override_page_by_entity)) {
+            $page_data['template_type'] = 'file';
+            $page_content = $theme_template_path . $override_page_by_entity;
+          }
         }
       
       }
