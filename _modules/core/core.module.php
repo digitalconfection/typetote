@@ -34,7 +34,6 @@ if (!empty($manifest)){
   {
     if ($path->getPath() == $item['path'] && $path->getPath() !== '')
     {
-
       // Get and build $page_data array.
       $page_data = $content->loadEntity($item['entity_id']);
       $page_data['template_type'] = 'content';
@@ -68,7 +67,6 @@ if (!empty($manifest)){
             $page_content = $theme_template_path . $override_page_by_entity;
           }
         }
-      
       }
 
       http_response_code(200);
