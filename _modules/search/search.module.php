@@ -62,7 +62,7 @@ $search_results->setPath('search', function() {
     $page_data['title'] = 'Search';
   }
   $page_data['pagination_num'] = $query->getQuery('pg');
-  $page_data['base_url'] = $template->baseUrl() . 'search?q=' . $query->getQuery('q');
+  $page_data['base_url'] = SiteInfo::baseUrl() . 'search?q=' . $query->getQuery('q');
 
   $page_content = $template->renderTemplateFile('_modules/search', 'search-page.tpl.php');
   include ($template->loadTheme('main'));
