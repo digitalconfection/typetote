@@ -76,6 +76,7 @@ var quill = new Quill('#quill_editor', {
   modules: {
     toolbar: '#toolbar'
   },
+  placeholder: 'Enter your text...',
   theme: 'snow'
 });
 

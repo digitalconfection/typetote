@@ -60,8 +60,8 @@ $admin_create->setPath('admin/post', function() {
   $page_content = $template->renderTemplateFile('_modules/admin', 'entity-form.tpl.php');
 
   $page_data['assets'] = array(
-    'https://cdn.quilljs.com/1.3.6/quill.snow.css',
-    'https://cdn.quilljs.com/1.3.6/quill.js',
+    '_modules/admin/_theme/css/quill.snow.css',
+    '_modules/admin/js/quill.min.js',
     '_modules/admin/js/file.js',
     '_modules/admin/js/publish.js'
   );
@@ -88,8 +88,8 @@ $admin_edit->setQueryPath('admin/edit', function() {
   $page_content = $template->renderTemplateFile('_modules/admin', 'entity-form.tpl.php');
 
   $page_data['assets'] = array(
-    'https://cdn.quilljs.com/1.3.6/quill.snow.css',
-    'https://cdn.quilljs.com/1.3.6/quill.js',
+    '_modules/admin/_theme/css/quill.snow.css',
+    '_modules/admin/js/quill.min.js',
     '_modules/admin/js/file.js',
     '_modules/admin/js/publish.js'
   );
@@ -244,8 +244,8 @@ $site_banner->setPath('admin/site-banner', function() {
 
   $page_data = $site_banner->readDataFile('_data/settings/site_banner.json');
   $page_data['assets'] = array(
-    'https://cdn.quilljs.com/1.3.6/quill.snow.css',
-    'https://cdn.quilljs.com/1.3.6/quill.js',
+    '_modules/admin/_theme/css/quill.snow.css',
+    '_modules/admin/js/quill.min.js',
     '_modules/admin/js/file.js',
     '_modules/admin/js/publish.js'
   );

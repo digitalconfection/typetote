@@ -691,3 +691,7 @@ ul.existing_tags {
 .ql-editor ol, .ql-editor ul {
   padding-left: unset;
 }
+
+.ql-editor.ql-blank::before {
+  left: 0;
+}
