@@ -1,9 +1,37 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+  // Dev Mode, to enable create a file called dev.php in the website root.
+  if (file_exists('dev.php')) {
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    if(strpos($_SERVER['REQUEST_URI'], 'login') !== false){
+
+      $dev_msg = 'Development mode is on! Remove the dev.php file before going to production.';
+      echo '<style>
+      .dev-mode {
+        position: fixed;
+        display: block;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: .8em;
+        background-color: #FFF5F1;
+        border-top: 1px solid #FE6D48;
+        color: #AC4319;
+        font-size: medium;
+      }
+      </style>';
+    
+      if (isset($_SESSION[$site_data['session']]['auth']['token'])) {
+        echo '<div class="dev-mode">';
+        echo '<div>Login Code:<br>' . $_SESSION[$site_data['session']]['auth']['token'] . '</div>';
+        echo '<div>' . $dev_msg . '</div></div>';
+      }
+    }
+  }
 
 // Unless explicitly set everything is a 404 (will need a dynamic page route)
 http_response_code(404);
@@ -41,38 +69,7 @@ if (is_file('_data/settings/site_info.json')) {
     include ($theme->loadTheme('main'));
   }
 
-  // Dev Mode, to enable create a file called dev.php in the website root.
-  if (file_exists('dev.php')) {
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
-    if(strpos($_SERVER['REQUEST_URI'], 'login') !== false){
-
-      $dev_msg = 'Development mode is on! Remove the dev.php file before going to production.';
-      echo '<style>
-      .dev-mode {
-        position: fixed;
-        display: block;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        padding: .8em;
-        background-color: #FFF5F1;
-        border-top: 1px solid #FE6D48;
-        color: #AC4319;
-        font-size: medium;
-      }
-      </style>';
-    
-      if (isset($_SESSION[$site_data['session']]['auth']['token'])) {
-        echo '<div class="dev-mode">';
-        echo '<div>Login Code:<br>' . $_SESSION[$site_data['session']]['auth']['token'] . '</div>';
-        echo '<div>' . $dev_msg . '</div></div>';
-      }
-    }
-  }
 
   // Show admin bar to the top of the page when user is logged in.
   if (isset($_SESSION[$site_data['session']]['template']['admin_bar']) && $_SESSION[$site_data['session']]['template']['admin_bar'] == 'yes') {
