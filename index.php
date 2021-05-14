@@ -1,8 +1,4 @@
 <?php
-
-  // Dev Mode, to enable create a file called dev.php in the website root.
-
-
 // Unless explicitly set everything is a 404 (will need a dynamic page route)
 http_response_code(404);
 
@@ -92,7 +88,5 @@ if (is_file('_data/settings/site_info.json')) {
   include($install);
   header('Location:' . SiteInfo::baseUrl() . 'install.php');
 }
-
-
 
 ?>
