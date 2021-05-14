@@ -109,7 +109,7 @@ foreach ($content_list_data as $list_page) {
     $page_data['template_type'] = 'list';
     $page_data['title'] = ucfirst($path['name']);
     $page_data['pagination_num'] = $query->getQuery('pg');
-    $page_data['base_url'] = $theme->baseUrl() . $path['path'] .'?';
+    $page_data['base_url'] = SiteInfo::baseUrl() . $path['path'] .'?';
   
     // Load override template.
     $override_template = 'page--' . $path['path'] . '.tpl.php';
@@ -155,7 +155,7 @@ $tags->setQueryPath('tags', function() {
     $page_data['list'] = $tag_data->paginate($tag_results);
 
     $page_data['template_type'] = 'list';
-    $page_data['base_url'] = $template->baseUrl() . 'tags?q=' . $query->getQuery('q');
+    $page_data['base_url'] = SiteInfo::baseUrl() . 'tags?q=' . $query->getQuery('q');
     $page_data['pagination_num'] = $query->getQuery('pg');
     $page_data['title'] = 'Tag: ' . ucwords($query->getQuery('q'));
 

@@ -4,8 +4,8 @@
 
 <form method="post" enctype="multipart/form-data">
 <div id="user_well" class="page-well">
-<?php if (isset($page_data)) { ?>
-  <?php foreach ($page_data as $key => $user ) { ?>
+<?php if (isset($page_data['users'])) { ?>
+  <?php foreach ($page_data['users'] as $key => $user ) { ?>
 
     <div class="user_obj" id="<?php echo 'ob_'. $key ?>">
       <input type="text" name="user[<?php echo $key; ?>]" placeholder="Email Address" value="<?php echo $user ?>">
@@ -16,7 +16,7 @@
 <?php } else { ?>
 
   <div class="user_obj">
-    <input type="text" name="user[0]" placeholder="Email Address">
+    <input type="text" name="user[0]" placeholder="Email Address" required>
   </div>
 
 <?php } ?>

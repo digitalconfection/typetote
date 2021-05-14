@@ -8,7 +8,6 @@ Disallow: /_extensions
 Disallow: /version.txt
 Disallow: /login
 
-
 # Certain social media sites are whitelisted to allow crawlers to access page markup when links to /images are shared. 
 User-agent: Twitterbot
 Allow: /_themes/*/img

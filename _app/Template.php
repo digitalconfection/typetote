@@ -6,12 +6,12 @@ class Template {
   // public $page_content;
 
   // Set base Url
-  public function baseUrl()
-  {
-    $dir = getcwd();
-    $base_dir = substr($dir, strrpos($dir, '/') + 1);
-    return '//' . $_SERVER['SERVER_NAME'] . '/' . $base_dir . '/';
-  }
+  // public function baseUrl()
+  // {
+  //   $dir = getcwd();
+  //   $base_dir = substr($dir, strrpos($dir, '/') + 1);
+  //   return '//' . $_SERVER['SERVER_NAME'] . '/' . $base_dir . '/';
+  // }
 
   // Basic method to define and set the type of template to load.
   public function loadTheme($var) {
@@ -38,18 +38,6 @@ class Template {
   public function renderTemplateFile($dir, $file)
   {
     return $dir . '/_templates/' . $file;
-  }
-
-  // Render module Js.
-  public function renderModuleJs($file)
-  {
-    $site = new SiteInfo();
-    print '<script src="' . $site->baseUrl() . '_modules/' . $file . '" type="text/javascript" async></script>';
-
-  }
-
-  public function renderExternalAsset($file) {
-    print $file;
   }
 
   // Template override to load custom tpl file

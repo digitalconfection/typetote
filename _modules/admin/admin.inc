@@ -10,7 +10,7 @@ $admin_content->setPath('admin', function() {
 
   $page_content = $template->renderTemplateFile('_modules/admin', 'dashboard.tpl.php');
   $page_data['pagination_num'] = $query->getQuery('pg');
-  $page_data['base_url'] = $template->baseUrl() . 'admin?q=' . $query->getQuery('q');
+  $page_data['base_url'] = SiteInfo::baseUrl() . 'admin?q=' . $query->getQuery('q');
 
   if ($query->getQuery('q') == 'posts') {
     
@@ -61,7 +61,7 @@ $admin_create->setPath('admin/post', function() {
 
   $page_data['assets'] = array(
     '_modules/admin/_theme/css/quill.snow.css',
-    '_modules/admin/js/quill.min.js',
+    '_modules/admin/js/quill.js',
     '_modules/admin/js/file.js',
     '_modules/admin/js/publish.js'
   );
@@ -84,12 +84,12 @@ $admin_edit->setQueryPath('admin/edit', function() {
   // These might have to be file varibles that we then pass to thte theme.
   $template = new Template();
   $page_data = $content->loadEntity($path->getQueryPath());
-  $page_data['base_url'] = $template->baseUrl();
+  $page_data['base_url'] = SiteInfo::baseUrl();
   $page_content = $template->renderTemplateFile('_modules/admin', 'entity-form.tpl.php');
 
   $page_data['assets'] = array(
     '_modules/admin/_theme/css/quill.snow.css',
-    '_modules/admin/js/quill.min.js',
+    '_modules/admin/js/quill.js',
     '_modules/admin/js/file.js',
     '_modules/admin/js/publish.js'
   );
@@ -119,7 +119,7 @@ $admin_delete->setQueryPath('admin/delete', function() {
   }
 
   $page_data = $content->loadEntity($id->getQueryPath());
-  $page_data['base_url'] = $template->baseUrl();
+  $page_data['base_url'] = SiteInfo::baseUrl();
 
   if (isset($_POST['no'])) {
     // If no title is found then its a media asset.
@@ -144,11 +144,13 @@ $admin_menus->setPath('admin/media', function() {
 
   $file = new Media();
   $template = new Template();
-  $template->renderModuleJs('admin/js/file.js');
   $page_content = $template->renderTemplateFile('_modules/admin', 'media-browser.tpl.php');
   $page_data['files'] = $file->browse_files();
-  $page_data['url'] = $template->baseUrl();
+  $page_data['url'] = SiteInfo::baseUrl();
   $page_data['embeded'] = 'no';
+  $page_data['assets'] = array(
+    '_modules/admin/js/file.js'
+  );
 
   include ($template->loadTheme('admin'));
 });
@@ -159,11 +161,13 @@ $file_upload->setPath('admin/media/browser', function() {
 
   $file = new Media();
   $template = new Template();
-  $template->renderModuleJs('admin/js/file.js');
   $page_content = $template->renderTemplateFile('_modules/admin', 'media-browser.tpl.php');
   $page_data['files'] = $file->browse_files();
-  $page_data['url'] = $template->baseUrl();
+  $page_data['url'] = SiteInfo::baseUrl();
   $page_data['embeded'] = 'yes';
+  $page_data['assets'] = array(
+    '_modules/admin/js/file.js'
+  );
 
   $page_data['utility_page'] = 'yes';
   include ($template->loadTheme('admin'));
@@ -179,11 +183,11 @@ $file_upload->setPath('admin/media/upload', function() {
   };
 
   $template = new Template();
-  $template->renderModuleJs('admin/js/file.js');
-  $page_data['utility_page'] = 'yes';
   $page_content = $template->renderTemplateFile('_modules/admin', 'media-upload.tpl.php');
-
   $page_data['utility_page'] = 'yes';
+  $page_data['assets'] = array(
+    '_modules/admin/js/file.js'
+  );
   include ($template->loadTheme('admin'));
 });
 
@@ -245,7 +249,7 @@ $site_banner->setPath('admin/site-banner', function() {
   $page_data = $site_banner->readDataFile('_data/settings/site_banner.json');
   $page_data['assets'] = array(
     '_modules/admin/_theme/css/quill.snow.css',
-    '_modules/admin/js/quill.min.js',
+    '_modules/admin/js/quill.js',
     '_modules/admin/js/file.js',
     '_modules/admin/js/publish.js'
   );
@@ -266,8 +270,11 @@ $site_banner->setPath('admin/users', function() {
     $category->saveSetting('users.json', $menu_data);
   }
   $template = new Template();
-  $template->renderModuleJs('admin/js/user.js');
-  $page_data = $category->readDataFile('_data/settings/users.json');
+  // $template->renderModuleJs('admin/js/user.js');
+  $page_data['users'] = $category->readDataFile('_data/settings/users.json');
+  $page_data['assets'] = array(
+    '_modules/admin/js/user.js'
+  );
   
   $template = new Template();
   $page_content = $template->renderTemplateFile('_modules/admin', 'users.tpl.php');
