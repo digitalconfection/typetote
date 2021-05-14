@@ -1,4 +1,5 @@
 <h1><i class="fas fa-edit"></i> Publish</h1>
+
 <form method="post" id="entity_form" enctype="multipart/form-data" class="content-form">
   <div class="col">
     <div class="page-well">
@@ -7,11 +8,13 @@
       </div>
     </div>
     <br>
-    <?php include('editor.tpl.php') ?>
+   
+    <?php include 'quill.tpl.php'; ?>
+
   </div>
 
   <div class="col-utility">
-    <?php if (isset($page_data) && $page_data['meta']['entity_status'] == 'published') { ?>
+    <?php if (isset($page_data['meta']) && $page_data['meta']['entity_status'] == 'published') { ?>
         <a href="<?php echo SiteInfo::baseUrl()  . $page_data['meta']['path']?>" target="_blank">View Content <i class="fas fa-arrow-right"></i></a>
         <br>
         <br>
@@ -21,9 +24,9 @@
       
       <label for="entity_type">Type:</label>
       <select name="entity[meta][entity_type]" id="entity_type" onchange="blockOptional();">
-        <option value="post" <?php if (isset($page_data)){ if ($page_data['meta']['entity_type'] == 'post'){?>selected="selected"<?php }} ?>>Post</option>
-        <option value="page" <?php if (isset($page_data)){ if ($page_data['meta']['entity_type'] == 'page'){?>selected="selected"<?php }} ?>>Page</option>
-        <option value="block" <?php if (isset($page_data)){ if ($page_data['meta']['entity_type'] == 'block'){?>selected="selected"<?php }} ?>>Block</option>
+        <option value="post" <?php if (isset($page_data['meta'])){ if ($page_data['meta']['entity_type'] == 'post'){?>selected="selected"<?php }} ?>>Post</option>
+        <option value="page" <?php if (isset($page_data['meta'])){ if ($page_data['meta']['entity_type'] == 'page'){?>selected="selected"<?php }} ?>>Page</option>
+        <option value="block" <?php if (isset($page_data['meta'])){ if ($page_data['meta']['entity_type'] == 'block'){?>selected="selected"<?php }} ?>>Block</option>
       </select>
 
       <?php
@@ -47,8 +50,8 @@
       <div id="block_optional" class="<?php if ($page_data['meta']['entity_type'] == 'block') { echo 'hide'; }?>">
         <label for="entity_status">Status:</label>
         <select name="entity[meta][entity_status]" id="entity_status">
-          <option value="draft" <?php if (isset($page_data)){ if ($page_data['meta']['entity_status'] == 'draft'){?>selected="selected"<?php }} ?>>Draft</option>
-          <option value="published" <?php if (isset($page_data)){ if ($page_data['meta']['entity_status'] == 'published'){?>selected="selected"<?php }} ?>>Published</option>
+          <option value="draft" <?php if (isset($page_data['meta'])){ if ($page_data['meta']['entity_status'] == 'draft'){?>selected="selected"<?php }} ?>>Draft</option>
+          <option value="published" <?php if (isset($page_data['meta'])){ if ($page_data['meta']['entity_status'] == 'published'){?>selected="selected"<?php }} ?>>Published</option>
         </select>
 
         <label for="tags">Tags:</label> 

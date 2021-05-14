@@ -1,53 +1,9 @@
-// Ensure that the first line of the wyswyg is at most a paragraph tag.
-document.execCommand('defaultParagraphSeparator', false, 'p');
-function firstParagraph() {
-  let wsywg_editor = document.getElementById('wysiwyg_editor');
-  if (wsywg_editor.innerHTML == '') {
-      document.execCommand('formatBlock', false, 'p')
-    }
-}
-
 // WYSWYG Btns
 var tt = {
-  // Used when text is altered
-  text: function (name) {
-      return document.execCommand(name, false, '');
-  },
-
   // Used when user input is needed (images, link).
   input: function (name, title, textdefualt) {
       return document.execCommand(name, false, prompt(title, textdefualt));
   },
-
-  format: function (tag) {
-      document.execCommand('formatBlock', false, tag);
-  },
-}
-
-// Copy data from one div to another.
-function copyText(from, to) {
-  var output = document.getElementById(from).innerHTML;
-  document.getElementById(to).innerHTML = output;
-}
-
-// Run copy function when WYSIWYG button is activated.
-var hrefs = document.getElementsByClassName('wy_btn');
-for (var i = 0; i < hrefs.length; i++) {
- hrefs.item(i).addEventListener('click', function(e){
-  copyText('wysiwyg_editor', 'page_data');
- });
-}
-
-// switchBlockEidtor
-function switchBlockEidtor() {
-  
-  var prompt = confirm("Switching to modes will lose any new changes you make.");
-  if (prompt == true) {
-    document.getElementById('wysiwyg_well').classList.toggle('hide');
-    document.getElementById('wsywyg-btns').classList.toggle('hide');
-    document.getElementById('page_data').classList.toggle('hide');
-  }
-
 }
 
 // Image Upload
@@ -62,7 +18,6 @@ function imageUpload(path = '') {
 
   document.getElementById('img_upload_well').innerHTML = model;
   document.getElementById('img_upload_well').classList.toggle('hide');
- 
 }
 
 // Function to remove featured image.
@@ -73,27 +28,10 @@ function removeFeaturedImage() {
   document.getElementById('featured_image-src').value = '';
 }
 
-// Add the sticky class to wyswyg editor.
-function stickyHeader() {
-    var header = document.getElementById("edit-bar");
-    var sticky = header.offsetTop;
-  
-  if (window.pageYOffset > sticky) 
-  {
-    header.classList.add("sticky");
-  } 
-  else 
-  {
-    header.classList.remove("sticky");
-  }
-}
-window.onscroll = function() {stickyHeader()};
-
 // On block select hide optional items.
 function blockOptional() {
 
   var select = document.getElementById("entity_type").value;
-
   if (select == 'block') {
     document.getElementById('block_optional').classList.toggle('hide');
     document.getElementById('category-items').classList.toggle('hide');
@@ -106,7 +44,6 @@ function blockOptional() {
   if (select == 'page') {
     document.getElementById('category-items').classList.toggle('hide');
   }
-
 }
 
 // Tag click and copy
@@ -131,5 +68,25 @@ function tt_autosave() {
     document.getElementById("entity_form").submit();
   }
 }
+
 // Run auto save every 5min
 setTimeout(tt_autosave, 300000);
+
+var quill = new Quill('#quill_editor', {
+  modules: {
+    toolbar: '#toolbar'
+  },
+  theme: 'snow'
+});
+
+// Copy data from one div to another.
+function copyText(from, to) {
+  var output = document.getElementsByClassName(from);
+  var content = output[0].innerHTML;
+  document.getElementById(to).innerHTML = content;
+}
+
+// Prior to submiting the content create form, run this script to copy data to hidden textbox.
+document.getElementById("entity_form").onsubmit = function() {
+  copyText('ql-editor', 'page_data');
+};

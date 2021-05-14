@@ -4,8 +4,8 @@
 
 <form method="post" enctype="multipart/form-data">
 <div id="category_well" class="page-well">
-<?php if (isset($page_data)) { ?>
-  <?php foreach ($page_data as $key => $cat ) { ?>
+<?php if (isset($page_data['categroy'])) { ?>
+  <?php foreach ($page_data['categroy'] as $key => $cat ) { ?>
 
     <div class="cat_obj" id="<?php echo 'ob_'. $key ?>">
       <input type="text" name="cat[<?php echo $key; ?>][name]" placeholder="Category Name" value="<?php echo $cat['name'] ?>">

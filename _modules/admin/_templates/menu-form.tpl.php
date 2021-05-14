@@ -5,8 +5,8 @@
 <form method="post" enctype="multipart/form-data">
 <div id="menu_well" class="page-well">
   <!-- When Menu file is set -->
-  <?php if (isset($page_data)) { ?>
-   <?php  foreach ($page_data as $menu ) { ?>
+  <?php if (isset($page_data['menu'])) { ?>
+   <?php  foreach ($page_data['menu'] as $menu ) { ?>
       <div class="menu_obj" id="<?php echo 'ob_'. $menu['weight'] ?>">
         <input type="text" name="menu[<?php echo $menu['weight'] ?>][name]" placeholder="Menu Name" value="<?php echo $menu['name'] ?>">
         <input type="text" name="menu[<?php print $menu['weight'] ?>][path]" placeholder="Menu Path" value="<?php echo $menu['path'] ?>">

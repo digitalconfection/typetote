@@ -48,10 +48,15 @@ class Template {
 
   }
 
+  public function renderExternalAsset($file) {
+    print $file;
+  }
+
   // Template override to load custom tpl file
   public function override($file_name, $theme)
   {
     return 'themes/' . $theme . '/' . $file_name . '.tpl.php';
   }
+  
 
 }
