@@ -695,3 +695,7 @@ ul.existing_tags {
 .ql-editor.ql-blank::before {
   left: 0;
 }
+
+#quill_editor p {
+  margin-bottom: 1rem;
+}

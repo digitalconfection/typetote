@@ -138,6 +138,7 @@ class Entity
         // Set path, if non-set make from title. (need to add clause for blog).
         if (empty($data['meta']['path'])) {
           $path = str_replace(' ', '-', $data['title']);
+          $path = preg_replace('/[^A-Za-z0-9\-]/', '', $path);
           $path = strtolower($path);
 
           // If type is post, prepend with blog (TODO: will need to be blog name)

@@ -60,10 +60,10 @@ $admin_create->setPath('admin/post', function() {
   $page_content = $template->renderTemplateFile('_modules/admin', 'entity-form.tpl.php');
 
   $page_data['assets'] = array(
-    '_modules/admin/_theme/css/quill.snow.css',
     '_modules/admin/js/quill.js',
     '_modules/admin/js/file.js',
-    '_modules/admin/js/publish.js'
+    '_modules/admin/js/publish.js',
+    '_modules/admin/_theme/css/quill.snow.css'
   );
 
   include ($template->loadTheme('admin'));
@@ -88,10 +88,10 @@ $admin_edit->setQueryPath('admin/edit', function() {
   $page_content = $template->renderTemplateFile('_modules/admin', 'entity-form.tpl.php');
 
   $page_data['assets'] = array(
-    '_modules/admin/_theme/css/quill.snow.css',
     '_modules/admin/js/quill.js',
     '_modules/admin/js/file.js',
-    '_modules/admin/js/publish.js'
+    '_modules/admin/js/publish.js',
+    '_modules/admin/_theme/css/quill.snow.css'
   );
 
   include ($template->loadTheme('admin'));
