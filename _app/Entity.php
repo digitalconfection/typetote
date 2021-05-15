@@ -110,16 +110,22 @@ class Entity
       $entity_file_name = $data['meta']['entity_id'];
       $entity_file_path = $this->entity_dir . '/' . $entity_file_name . '.json';
 
-      // Set summery if not set.
-      if (empty($data['summery'])) {
-        $summery = strip_tags($data['body']);
-        ltrim($summery);
-        if (strlen($summery) <= 125) {
-          $data['summery'] = $summery;
+      // Set summary if not set.
+      if (empty($data['summary'])) {
+        $summary = strip_tags($data['body']);
+        ltrim($summary);
+        if (strlen($summary) <= 125) {
+          $data['summary'] = $summary;
         } else {
-          $data['summery'] = substr($summery, 0, 125);
+          $data['summary'] = substr($summary, 0, 125);
         }
       }
+
+      // Save Tags:
+      // Here we change spaces to dashes, re-add spaces for comma explode, make to lowerstring.
+      $tags = str_replace(' ', '-', $data['meta']['tags']);
+      $tags = str_replace(',-', ', ', $tags);
+      $data['meta']['tags'] = strtolower($tags);
 
       // Reset the blog path to ensure its updated and appended with blog dir name.
       if ($data['meta']['entity_type'] == 'post') {
@@ -413,7 +419,7 @@ class Entity
       $item = $rss->addChild('item');
       $item->addChild('title', $i['title']);
       $item->addChild('link', SiteInfo::baseUrl() . $i['meta']['path']);
-      $item->addChild('description', $i['summery']);
+      $item->addChild('description', $i['summary']);
     }
 
     // Save File

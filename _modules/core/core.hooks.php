@@ -145,7 +145,6 @@ function render_ga() {
 // Render Breadcrumbs
 function render_breadcrumbs($homelink = null) {
   
-  global $page_data;
   $site_info =  new SiteInfo();
   $dir = basename(dirname($_SERVER['PHP_SELF']));
 
@@ -166,10 +165,10 @@ function render_breadcrumbs($homelink = null) {
   }
 
   $links[0] = '';
-  $front_page = new Route();
+  $page = new Route();
 
   // Only show if not on homepage.
-  if ($front_page->getPath() !== '' xor http_response_code() == '404') {
+  if ($page->getPath() !== '' xor http_response_code() == '404' xor strpos($page->getPath(), 'tag') !== false) {
 
     echo '<br><div class="breadcrumbs"><ol>';
       foreach ($links as $key => $link) {
@@ -179,6 +178,7 @@ function render_breadcrumbs($homelink = null) {
         if ($key == 0) {
           echo '<li><a href="'.  $site_info->baseUrl() . '">'. ucfirst($first_breadcrumb) .'</a></li>';
         } else if ($x === $length) {
+
           echo '<li>' . ucwords($link_text) . '</li>';
         } 
         else {

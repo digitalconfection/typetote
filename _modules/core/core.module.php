@@ -143,9 +143,8 @@ $tags->setQueryPath('tags', function() {
   $tag_results = array();
   foreach ($raw_data as $tag) {
 
-    $tags = strtolower($tag['meta']['tags']);
-    $query_term = strtolower($query->getQuery('q'));
-
+    $tags = $tag['meta']['tags'];
+    $query_term = $query->getQuery('q');
     if(strpos($tags, $query_term) !== false) {
      $tag_results[] = $tag;
     }
@@ -153,13 +152,13 @@ $tags->setQueryPath('tags', function() {
 
   // If tag results are not empty render page.
   if (!empty($tag_results)) {
-    $page_data['list'] = $tag_data->paginate($tag_results);
+    $page_data['items'] = $tag_data->paginate($tag_results);
 
     $page_data['template_type'] = 'list';
     $page_data['base_url'] = SiteInfo::baseUrl() . 'tags?q=' . $query->getQuery('q');
     $page_data['pagination_num'] = $query->getQuery('pg');
-    $page_data['title'] = 'Tag: ' . ucwords($query->getQuery('q'));
-
+    $page_data['title'] = 'Tag: ' . $template->decodeTag($query->getQuery('q'));
+  
     include ($template->loadTheme('main'));
   }
   else {
