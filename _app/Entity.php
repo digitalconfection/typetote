@@ -344,8 +344,7 @@ class Entity
   /**
    * Used to create a defualt setting file. 
    */
-  public function saveSetting($file_name, $data)
-  {
+  public function saveSetting($file_name, $data) {
     $this->makeDirectory($this->settings_dir);
     $settings_file = $this->settings_dir . '/' . $file_name;
     $this->createFile($settings_file, $data);

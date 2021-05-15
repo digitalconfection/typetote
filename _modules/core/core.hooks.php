@@ -112,7 +112,12 @@ function render_siteDescription($page_data) {
   if(isset($page_data['summary'])){ 
     echo $page_data['summary']; 
   }
-  else if ($path->getPath() == $site_data['blog_path'] && $site_data['blog_description'] !== '') {
+
+  else if (!empty($page_data['cat_description'])) {
+    echo $page_data['cat_description']; 
+  }
+
+  else if ($path->getPath() == $site_data['blog_path'] && !empty($site_data['blog_description'])) {
     echo $site_data['blog_description']; 
   }
   else { echo $site_data['site_description']; }

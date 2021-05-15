@@ -89,12 +89,12 @@ foreach ($content_list_data as $list_page) {
     $query = new Route();
 
     $path_data = $site_info->getSiteContentListData();
-
     $path = array();
     foreach ($path_data as $item) {
       if ($item['path'] == $query->getPathName()) {
         $path['name'] = $item['name'];
         $path['path'] = $item['path'];
+        $path['description'] = $item['description'];
       }
     }
 
@@ -110,6 +110,7 @@ foreach ($content_list_data as $list_page) {
     $page_data['title'] = ucfirst($path['name']);
     $page_data['pagination_num'] = $query->getQuery('pg');
     $page_data['base_url'] = SiteInfo::baseUrl() . $path['path'] .'?';
+    $page_data['cat_description'] = $path['description'];
   
     // Load override template.
     $override_template = 'page--' . $path['path'] . '.tpl.php';
