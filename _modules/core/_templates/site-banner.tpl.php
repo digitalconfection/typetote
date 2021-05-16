@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+if (isset($data)) {
+
 $empty_body = strip_tags($data['body']);
 if ($empty_body !== '') { ?>
 
@@ -30,4 +33,4 @@ if ($empty_body !== '') { ?>
     localStorage.setItem('date', today);
   }
 </script>
-<?php } ?>
+<?php } }?>

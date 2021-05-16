@@ -13,6 +13,7 @@
           <button class="ql-underline"></button>
           <button class="ql-blockquote"></button>
           <button class="ql-code-block"></button>
+          <button class="ql-link"></button>
           <button class="ql-list" value="ordered"></button>
           <button class="ql-list" value="bullet"></button>
           <button class="ql-img" title="Insert Image" onclick="imageUpload();"><i class="fas fa-image"></i></button>

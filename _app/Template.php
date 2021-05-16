@@ -46,7 +46,7 @@ class Template {
     return 'themes/' . $theme . '/' . $file_name . '.tpl.php';
   }
   
-  public function decodeTag($tag) {
+  public static function decodeTag($tag) {
 
     // First we take the tag and remove the dashes.
     $decoded_tag = str_replace('-', ' ', $tag);

@@ -157,7 +157,7 @@ $tags->setQueryPath('tags', function() {
     $page_data['template_type'] = 'list';
     $page_data['base_url'] = SiteInfo::baseUrl() . 'tags?q=' . $query->getQuery('q');
     $page_data['pagination_num'] = $query->getQuery('pg');
-    $page_data['title'] = 'Tag: ' . $template->decodeTag($query->getQuery('q'));
+    $page_data['title'] = $template->decodeTag($query->getQuery('q'));
   
     include ($template->loadTheme('main'));
   }

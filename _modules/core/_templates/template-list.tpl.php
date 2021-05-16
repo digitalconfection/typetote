@@ -24,7 +24,7 @@ if (isset($page_data['items']['content'][0])) {
 
     <article>
       <h3><a href="<?php echo $item['meta']['path']; ?>"><?php echo $item['title']; ?></a></h3>
-      <p><?php echo $item['summery']; ?></p>
+      <p><?php echo $item['summary']; ?></p>
       <?php renderTags($item['meta']['tags']); ?>
     </article>
 
