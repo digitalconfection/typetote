@@ -88,6 +88,8 @@ function copyText(from, to) {
 }
 
 // Prior to submiting the content create form, run this script to copy data to hidden textbox.
-document.getElementById("entity_form").onsubmit = function() {
-  copyText('ql-editor', 'page_data');
-};
+if(document.getElementById("entity_form") !== null) {
+  document.getElementById("entity_form").onsubmit = function() {
+    copyText('ql-editor', 'page_data');
+  };
+}
