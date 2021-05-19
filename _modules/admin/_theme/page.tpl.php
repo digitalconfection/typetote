@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>TypeTote - Admin</title>
-  <?php renderAssets($page_data); ?>
+  <?php renderAssetsCSS($page_data); ?>
   <link rel="stylesheet" type="text/css" href="<?php echo SiteInfo::baseUrl(); ?>_modules/admin/_theme/css/style.css">
 </head>
 <body>
@@ -68,6 +68,7 @@
     }
   </style>
 <?php } ?>
+<?php renderAssetsJS($page_data); ?>
 
 </body>
 </html>
