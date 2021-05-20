@@ -54,6 +54,8 @@ $admin_create->setPath('admin/post', function() {
     $_POST['entity']['meta']['date_published'] =  date('m') . '/' . date('d') .'/' . date('Y') ; // Intial Creation Date
     
     $content->saveEntity($_POST['entity']);
+    header("Refresh:0");
+
   }
 
   $template = new Template();
@@ -79,6 +81,7 @@ $admin_edit->setQueryPath('admin/edit', function() {
     // Edit date
     $_POST['entity']['meta']['date_edited'] =  date('m') . '/' . date('d') .'/' . date('Y') ; // Intial Creation Date
     $content->saveEntity($_POST['entity']);
+    header("Refresh:0");
   }
 
   // These might have to be file varibles that we then pass to thte theme.
@@ -139,8 +142,8 @@ $admin_delete->setQueryPath('admin/delete', function() {
 });
 
 // When user vists: /admin/media (main media page)
-$admin_menus = new Route();
-$admin_menus->setPath('admin/media', function() {
+$admin_media = new Route();
+$admin_media->setPath('admin/media', function() {
 
   $file = new Media();
   $template = new Template();
@@ -200,6 +203,7 @@ $admin_category->setPath('admin/category', function() {
     $menu_data = $_POST['cat'];
     asort($menu_data);
     $category->saveSetting('category.json', $menu_data);
+    header("Refresh:0");
   }
   
   $page_data['categroy'] = $category->readDataFile('_data/settings/category.json');
@@ -223,6 +227,7 @@ $admin_menus->setPath('admin/menu', function() {
       return $a['weight'] <=> $b['weight'];
     });
     $menu->saveSetting('menu.json', $menu_data);
+    header("Refresh:0");
   }
 
   $page_data['menu'] = $menu->readDataFile('_data/settings/menu.json');
@@ -244,6 +249,7 @@ $site_banner->setPath('admin/site-banner', function() {
   if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $site_banner_data = $_POST['entity'];
     $site_banner->saveSetting('site_banner.json', $site_banner_data);
+    header("Refresh:0");
   }
 
   $page_data = $site_banner->readDataFile('_data/settings/site_banner.json');
@@ -260,14 +266,15 @@ $site_banner->setPath('admin/site-banner', function() {
 });
 
 // When user visits: /admin/users
-$site_banner = new Route();
-$site_banner->setPath('admin/users', function() {
+$users = new Route();
+$users->setPath('admin/users', function() {
 
   $category = new Entity();
   if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $menu_data = $_POST['user'];
     $menu_data = array_map( 'strtolower', $menu_data ); 
     $category->saveSetting('users.json', $menu_data);
+    header("Refresh:0");
   }
   $template = new Template();
   // $template->renderModuleJs('admin/js/user.js');
@@ -298,7 +305,8 @@ $admin_settings->setPath('admin/settings', function() {
     $site_info_data['blog_path'] = str_replace(' ', '-', $blog_path);
 
     // Add logic here if security questions were changed. Auto log out the user.
-    $site_info->saveSetting('site_info.json', $site_info_data);    
+    $site_info->saveSetting('site_info.json', $site_info_data);
+    header("Refresh:0");
   }
 
   $template = new Template();

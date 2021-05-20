@@ -8,8 +8,8 @@
   <?php if (isset($page_data['menu'])) { ?>
    <?php  foreach ($page_data['menu'] as $menu ) { ?>
       <div class="menu_obj" id="<?php echo 'ob_'. $menu['weight'] ?>">
-        <input type="text" name="menu[<?php echo $menu['weight'] ?>][name]" placeholder="Menu Name" value="<?php echo $menu['name'] ?>">
-        <input type="text" name="menu[<?php print $menu['weight'] ?>][path]" placeholder="Menu Path" value="<?php echo $menu['path'] ?>">
+        <input type="text" name="menu[<?php echo $menu['weight'] ?>][name]" placeholder="Menu Name" value="<?php echo $menu['name'] ?>" required>
+        <input type="text" name="menu[<?php print $menu['weight'] ?>][path]" placeholder="Menu Path" value="<?php echo $menu['path'] ?>" required>
         <div class="order-adjust">
           <input type="hidden" class="obj_order" name="menu[<?php print $menu['weight'] ?>][weight]" value="<?php echo $menu['weight'] ?>">
           <div class="link" title="up" onclick="moveRow('<?php echo $menu['weight'] ?>', 'up');"><i class="fas fa-chevron-up"></i></div>
@@ -22,8 +22,8 @@
 
   <!-- When Menu file is not set -->
   <div class="menu_obj" id="ob_0">
-    <input type="text" name="menu[0][name]" placeholder="Menu Name">
-    <input type="text" name="menu[0][path]" placeholder="Menu Path">
+    <input type="text" name="menu[0][name]" placeholder="Menu Name" required>
+    <input type="text" name="menu[0][path]" placeholder="Menu Path"required>
     <input type="hidden" class="obj_order" name="menu[0][weight]" value="0">
     <div class="order-adjust">
       <input type="hidden" class="obj_order" name="menu[0][weight]" value="0">

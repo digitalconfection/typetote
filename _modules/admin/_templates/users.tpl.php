@@ -8,7 +8,7 @@
   <?php foreach ($page_data['users'] as $key => $user ) { ?>
 
     <div class="user_obj" id="<?php echo 'ob_'. $key ?>">
-      <input type="text" name="user[<?php echo $key; ?>]" placeholder="Email Address" value="<?php echo $user ?>">
+      <input type="text" name="user[<?php echo $key; ?>]" placeholder="Email Address" value="<?php echo $user ?>" required>
       <span class="x" onclick="removeUser('<?php echo 'ob_'. $key ?>');"><i class="fas fa-ban"></i></span>
     </div>
     

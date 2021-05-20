@@ -12,8 +12,8 @@ function addMenuRow() {
   div.className= 'menu_obj';
   div.id = 'ob_'+ obNum.count('menu_obj') +'';
   div.innerHTML= `
-      <input type="text" name="menu[`+ obNum.count('menu_obj')  +`][name]" placeholder="Menu Name">
-      <input type="text" name="menu[`+obNum.count('menu_obj')  +`][path]" placeholder="Menu Path">
+      <input type="text" name="menu[`+ obNum.count('menu_obj')  +`][name]" placeholder="Menu Name" required>
+      <input type="text" name="menu[`+obNum.count('menu_obj')  +`][path]" placeholder="Menu Path" required>
       <div class="order-adjust">
         <input type="hidden" class="obj_order" name="menu[`+ obNum.count('menu_obj')  +`][weight]" value="`+ obNum.count('menu_obj') +`">
         <div class="link" title="up" onclick="moveRow(`+ obNum.count('menu_obj') + `, 'up');"><i class="fas fa-chevron-up"></i></div>
