@@ -41,8 +41,6 @@
       Version: <b><?php include ('version.txt'); ?></b>
     </div>
 
-   
-  
   <?php include('_modules/admin/_templates/session-notice.tpl.php'); ?>
 </div>
 

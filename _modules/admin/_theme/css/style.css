@@ -32,17 +32,17 @@ p {
   margin-top: 0;
 }
 
-a {
+a, .link {
   color: #6D63EC;
   text-decoration: none;
 }
 
-a:hover {
+a:hover, .link:hover {
   color: #ED7996;
   transition: all .3s ease-in-out;
 }
 
-.click {
+.click, .link {
   cursor: pointer;
 }
 
@@ -194,8 +194,8 @@ button:hover, input[type=submit]:hover, input[type=button]:hover, .btn:hover {
 .x {
   color: #3e4b5b;
   cursor: pointer;
-  margin-top: -.5em;
-  font-size: 1.5em;
+  margin-top: -.2em;
+  font-size: 1.2em;
   text-align: center;
 }
 
@@ -308,13 +308,19 @@ input[type=text].editor-title {
 .menu_obj {
   display: grid;
   grid-column-gap: 1em;
-  grid-template-columns: 1fr 1fr .1fr .05fr;
+  grid-template-columns: 1fr 1fr .01fr .01fr;
   align-items: center;
 }
 
-.obj_order {
-  text-align: center;
+/* .obj_order {
+  text-align: right;
+} */
+
+.order-adjust {
+  align-self: right;
+  font-size: 1rem;
 }
+
 
 /* Category */
 .cat_obj {
@@ -694,6 +700,8 @@ ul.existing_tags {
 
 .ql-editor.ql-blank::before {
   left: 0;
+  color: #A9A9A9;
+  font-style: normal;
 }
 
 #quill_editor p {
