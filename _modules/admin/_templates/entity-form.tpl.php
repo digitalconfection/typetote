@@ -55,7 +55,7 @@
         </select>
 
         <label for="tags">Tags:</label> 
-        <input id="tags" type="text" name="entity[meta][tags]" value="<?php if (isset($page_data['meta']['tags'])) { echo $page_data['meta']['tags']; } ?>">
+        <input id="tags" type="text" placeholder="Add tags separated by commas" name="entity[meta][tags]" value="<?php if (isset($page_data['meta']['tags'])) { echo $page_data['meta']['tags']; } ?>">
 
         <?php
           // render list of avalible tags.
@@ -96,7 +96,7 @@
         ?>
         
         <label for="summary">Summary:</label> 
-        <textarea id="summary" name="entity[summary]"><?php if (isset($page_data['summary'])) { echo $page_data['summary']; } ?></textarea>
+        <textarea id="summary" placeholder="Add a short description for summaries and search results" name="entity[summary]"><?php if (isset($page_data['summary'])) { echo $page_data['summary']; } ?></textarea>
 
         <details>
           <summary>Featured Image</summary>
