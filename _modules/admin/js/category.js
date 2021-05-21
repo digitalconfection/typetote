@@ -9,15 +9,16 @@ var obNum = {
 function addCategoryRow() {
 
   var div = document.createElement("div");
-  div.className= 'cat_obj';
+  div.className = 'cat_obj page-well';
   div.id = 'ob_'+ obNum.count('cat_obj') +'';
   div.innerHTML= `
-      <div>
-        <input type="text" name="cat[`+ obNum.count('cat_obj')  +`][name]" placeholder="Category Name" required>
-        <input type="text" name="cat[`+obNum.count('cat_obj')  +`][path]" placeholder="Category Path (Must not have any spaces i.e &quot;dinner-menu&quot;)" required>
-      </div>
-      <textarea name="cat[`+obNum.count('cat_obj')  +`][description]" placeholder="Category Description"></textarea>
-      <span class="x" onclick="removeCategory('ob_`+ obNum.count('cat_obj') +`');"><i class="fas fa-ban"></i></span>
+
+        <div class="cat_obj--menu-info">
+          <input type="text" name="cat[`+ obNum.count('cat_obj') +`][name]" placeholder="Category Name" required>
+          <input type="text" name="cat[`+ obNum.count('cat_obj') +`][path]" placeholder="Category Path (Must not have any spaces i.e &quot;dinner-menu&quot;)" required>
+          <span class="x" onclick="removeCategory('ob_`+ obNum.count('cat_obj') +`');"><i class="fas fa-ban"></i></span>
+        </div>
+        <textarea name="cat[`+ obNum.count('cat_obj') +`][description]" placeholder="Category Description"></textarea>
       `;
   document.getElementById('category_well').appendChild(div);
 }
