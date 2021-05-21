@@ -354,6 +354,29 @@ class Entity
   public function saveSetting($file_name, $data) {
     $this->makeDirectory($this->settings_dir);
     $settings_file = $this->settings_dir . '/' . $file_name;
+
+    // For settings items, we need to go through the array and santize the data.
+    foreach ($data as $key => $item) {
+      
+      // If setting submited is multi array
+      if (is_array($item)) {
+
+        // Loop through each item 
+        foreach ($item as $prop => $object) {
+
+          // Stantize HTML
+          $item[$prop] = htmlspecialchars($object);
+
+        }
+        $data[$key] = $item;        
+    
+      } else {
+        
+        // Stantize HTML
+        $data[$key] = htmlspecialchars($item);
+      }
+    }
+
     $this->createFile($settings_file, $data);
   }
 
