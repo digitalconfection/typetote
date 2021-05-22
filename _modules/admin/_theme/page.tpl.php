@@ -35,10 +35,8 @@
     <div class="cc">
       <br>
       <hr>
-      Thank you for using <a href="https://typetote.com" target="_blank">TypeTote</a>! You Rock!. <i class="far fa-smile-beam"></i>
       <br>
-      <br>
-      Version: <b><?php include ('version.txt'); ?></b>
+      <a href="https://typetote.com" target="_blank">TypeTote: </a> <b><?php include ('version.txt'); ?></b>
     </div>
 
   <?php include('_modules/admin/_templates/session-notice.tpl.php'); ?>
