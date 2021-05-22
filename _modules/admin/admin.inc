@@ -247,8 +247,10 @@ $site_banner->setPath('admin/site-banner', function() {
   $site_banner = new Entity();
   // on save create a file in data called site banner.
   if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-    $site_banner_data = $_POST['entity'];
-    $site_banner->saveSetting('site_banner.json', $site_banner_data);
+
+    $_POST['entity']['body'] = strip_tags($_POST['entity']['body'], '<a>');
+
+    $site_banner->saveSetting('site_banner.json', $_POST['entity']);
     header("Refresh:0");
   }
 
@@ -259,6 +261,10 @@ $site_banner->setPath('admin/site-banner', function() {
     '_modules/admin/js/file.js',
     '_modules/admin/js/publish.js'
   );
+
+  if (isset($page_data['body'])) {
+    $page_data['body'] = htmlspecialchars_decode($page_data['body']);
+  }
   $template = new Template();
   $page_content = $template->renderTemplateFile('_modules/admin', 'site-banner.tpl.php');
 

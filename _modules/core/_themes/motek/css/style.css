@@ -321,6 +321,11 @@ hr {
   margin-bottom: 0;
 }
 
+.site-banner a {
+  color: white;
+  text-decoration: underline;
+}
+
 .site-banner .close {
   float: right;
   cursor: pointer;
