@@ -638,6 +638,11 @@ ul.existing_tags {
   left: 1rem;
 }
 
+.toolbar-btns button {
+  background-color: transparent;
+  padding: unset;
+}
+
 .ql-img {
   color: black;
 }
