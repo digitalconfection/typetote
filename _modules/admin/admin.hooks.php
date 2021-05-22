@@ -12,7 +12,7 @@ function renderAssetsJS($page_data) {
   if (isset($page_data['assets'])) {
     foreach ($page_data['assets'] as $asset) {
       if (strpos($asset, '.js') !== false) {
-        echo '<script src="' . $site->baseUrl() . $asset . '" type="text/javascript" async></script>'. PHP_EOL;
+        echo '<script src="' . $site->baseUrl() . $asset . '" type="text/javascript"></script>'. PHP_EOL;
       }
     }
   }
