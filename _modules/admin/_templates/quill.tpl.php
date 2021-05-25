@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="page-content" id="wysiwyg_well">
-    <div id="quill_editor" class="editor" contenteditable="true" placeholder="Enter Text..."><?php if (isset($page_data['body'])) { echo $page_data['body']; } ?></div>
+    <div id="quill_editor" class="editor"><?php if (isset($page_data['body'])) { echo $page_data['body']; } ?></div>
   </div>
   <textarea class="full-html-block hide" id="page_data" name="entity[body]"><?php if (isset($page_data['body'])) { echo $page_data['body']; } ?></textarea>
 </div>
