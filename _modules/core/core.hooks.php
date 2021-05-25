@@ -21,7 +21,7 @@ function render_templateMetaHead($page_data){
   $site_data = $site_info->getSiteData();
   $path = new Route();
   
-  if (isset($page_data['meta']['featured_image'])) {
+  if (!empty($page_data['meta']['featured_image'])) {
     $fb_og = $page_data['meta']['featured_image'];
     $twitter_og = $page_data['meta']['featured_image'];
   } else {

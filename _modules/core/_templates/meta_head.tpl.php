@@ -19,7 +19,7 @@
 <!-- Facebook Card -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php render_baseUrl() ?>" />
-<meta property="og:title" content=""<?php render_siteTitle($page_data);?>" />
+<meta property="og:title" content="<?php render_siteTitle($page_data);?>" />
 <meta property="og:description" content="<?php render_siteDescription($page_data); ?>"/>
 <meta property="og:image" content="<?php echo $fb_og; ?>"/>
 
