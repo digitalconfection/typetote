@@ -166,4 +166,23 @@ $tags->setQueryPath('tags', function() {
   }
 });
 
+
+// Render Sitemap
+$sitemap = new Route();
+$sitemap->setPath('sitemap', function() {
+
+  header('Content-Type: text/xml');
+  include '_data/sitemap.xml';
+
+});
+
+// Render RSS feed
+$rss = new Route();
+$rss->setPath('rss', function() {
+
+  header('Content-Type: text/xml');
+  include '_data/rss.xml';
+
+});
+
 ?>

@@ -416,7 +416,7 @@ class Entity
       }
     }
 
-    $file = fopen('sitemap.xml', 'w+');
+    $file = fopen('_data/sitemap.xml', 'w+');
     fwrite($file ,$xml->asXML()); 
     fclose($file);
   }
@@ -446,7 +446,7 @@ class Entity
     }
 
     // Save File
-    $file = fopen('rss.xml', 'w+');
+    $file = fopen('_data/rss.xml', 'w+');
     fwrite($file ,$rss->asXML()); 
     fclose($file);
   }
