@@ -25,7 +25,7 @@ $admin_content->setPath('login', function() {
     if (isset($_POST['email'])) {
 
       $user_data = new Entity();
-      $users = $user_data->readDataFile('_data/settings/users.json');
+      $users = $user_data->readDataFile(SiteInfo::getDataDir() . '/settings/users.json');
       if ($users == null) {
         $users = array();
       }

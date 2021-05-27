@@ -27,7 +27,7 @@ if ($front_page->getPath() == '') {
 $path = new Route();
 $template = new Template();
 $content = new Entity();
-$manifest = $content->readDataFile('_data/manifests/content_manifests.json');
+$manifest = $content->readDataFile(SiteInfo::getDataDir() . '/manifests/content_manifests.json');
 
 if (!empty($manifest)){
   foreach ($manifest as $item)
@@ -104,7 +104,7 @@ foreach ($content_list_data as $list_page) {
       'category' => $path['path'],
     );
     
-    $content_list = $content->renderEntityList('_data/manifests/content_manifests.json', $options);
+    $content_list = $content->renderEntityList(SiteInfo::getDataDir() . '/manifests/content_manifests.json', $options);
     $page_data['items'] = $content->paginate($content_list);
     $page_data['template_type'] = 'list';
     $page_data['title'] = ucfirst($path['name']);
@@ -138,7 +138,7 @@ $tags->setQueryPath('tags', function() {
   $options = array(
     'status' => 'published'
   );
-  $raw_data = $tag_data->renderEntityList('_data/manifests/content_manifests.json',  $options);
+  $raw_data = $tag_data->renderEntityList(SiteInfo::getDataDir() . '/manifests/content_manifests.json',  $options);
 
   $tag_results = array();
   foreach ($raw_data as $tag) {
@@ -171,7 +171,7 @@ $sitemap = new Route();
 $sitemap->setPath('sitemap', function() {
 
   header('Content-Type: text/xml');
-  include '_data/sitemap.xml';
+  include SiteInfo::getDataDir() . '/sitemap.xml';
 
 });
 
@@ -180,7 +180,7 @@ $rss = new Route();
 $rss->setPath('rss', function() {
 
   header('Content-Type: text/xml');
-  include '_data/rss.xml';
+  include SiteInfo::getDataDir() . '/rss.xml';
 
 });
 

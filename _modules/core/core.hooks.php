@@ -58,7 +58,7 @@ function render_themeCSS() {
 function render_siteMenu() {
   
   $menu = new Entity();
-  $menu_data = $menu->readDataFile('_data/settings/menu.json');
+  $menu_data = $menu->readDataFile(SiteInfo::getDataDir() . '/settings/menu.json');
   include('_templates/site_menu.tpl.php');
 }
 
@@ -66,7 +66,7 @@ function render_siteMenu() {
 function render_block($name) {
 
   $block_data = new Entity();
-  $block_file = '_data/blocks/block_' . $name . '.json';
+  $block_file = SiteInfo::getDataDir() . '/blocks/block_' . $name . '.json';
   $block = $block_data->readDataFile($block_file);
 
   echo $block['body'];
@@ -75,7 +75,7 @@ function render_block($name) {
 // Site Banner
 function render_siteBanner() {
   $site_banner = new Entity();
-  $data = $site_banner->readDataFile('_data/settings/site_banner.json');
+  $data = $site_banner->readDataFile(SiteInfo::getDataDir() . '/settings/site_banner.json');
   if (is_array($data)) {
     $data['body'] = htmlspecialchars_decode($data['body']);
     include('_templates/site-banner.tpl.php');
