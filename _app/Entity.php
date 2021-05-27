@@ -3,23 +3,18 @@
 class Entity
 {
 
-  public function __construct()
-  {
-    $this->entity_dir = '_data/content';
-    $this->manifests_dir = '_data/manifests';
-    $this->settings_dir = '_data/settings';
-    $this->blocks_dir = '_data/blocks';
-  }
+  private $entity_dir = 'content';
+  private $manifests_dir = 'manifests';
+  private $settings_dir = 'settings';
+  private $blocks_dir = 'blocks';
 
-  public function createFile($path, $data) 
-  {
+  public function createFile($path, $data) {
     $file = fopen($path, 'w+');
     fwrite($file , json_encode($data)); 
     fclose($file);
   }
 
-  private function makeDirectory($name)
-  {
+  private function makeDirectory($name) {
     if (!file_exists($name)) {
       mkdir($name, 0777, true);
     }
@@ -45,11 +40,10 @@ class Entity
     $file_name =  $type . '_manifests.json';
     $manifest_file = $this->manifests_dir . '/' . $file_name;
 
-
     if ($type == 'block'){
-      $data_dir = '_data/blocks';
+      $data_dir = $this->blocks_dir;
     } else {
-      $data_dir = '_data/content';
+      $data_dir = $this->entity_dir;
     }
 
     // scan through entity and build array.
@@ -206,10 +200,10 @@ class Entity
     
     // Check if the id is prefaced with block.
     if (strpos($id, "block_") === 0) {
-      $dir = '_data/blocks';
+      $dir = $this->blocks_dir;
     }
     else {
-      $dir = '_data/content';
+      $dir = $this->entity_dir;
     }
     
     $file = $dir . '/' . $id . '.json';
@@ -315,7 +309,6 @@ class Entity
     
     if ($array) {
 
-    
     if (isset($count)) {
         $output = array_chunk($array, $count);
       }
@@ -351,9 +344,9 @@ class Entity
   /**
    * Used to create a defualt setting file. 
    */
-  public function saveSetting($file_name, $data) {
-    $this->makeDirectory($this->settings_dir);
-    $settings_file = $this->settings_dir . '/' . $file_name;
+  public function saveSetting($dir, $file_name, $data) {
+    $this->makeDirectory($dir . '/' . $this->settings_dir);
+    $settings_file = $dir . '/' . $this->settings_dir . '/' . $file_name;
 
     // For settings items, we need to go through the array and santize the data.
     foreach ($data as $key => $item) {
@@ -389,7 +382,6 @@ class Entity
     http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"></urlset>';
     $xml = new SimpleXMLElement($xml_header);
     
-
     // Add homepage
     $homepage = $xml->addChild('url');
     $homepage->addChild('loc', SiteInfo::baseUrl());

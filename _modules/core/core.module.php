@@ -166,7 +166,6 @@ $tags->setQueryPath('tags', function() {
   }
 });
 
-
 // Render Sitemap
 $sitemap = new Route();
 $sitemap->setPath('sitemap', function() {

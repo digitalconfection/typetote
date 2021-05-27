@@ -38,4 +38,21 @@ class SiteInfo {
     }
   }
 
+  // This method is used to check if a file multistie.php is created.
+  // If its created set the data dir for either a single site or a multistie.
+  public static function getDataDir() {
+
+    if (file_exists('multisite.php')) {
+
+      $data_dir = '_data/' . $_SERVER['HTTP_HOST'];
+
+    }
+    else {
+      $data_dir = '_data';
+    }
+
+    return $data_dir;
+
+  }
+
 }

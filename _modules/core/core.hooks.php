@@ -76,8 +76,11 @@ function render_block($name) {
 function render_siteBanner() {
   $site_banner = new Entity();
   $data = $site_banner->readDataFile('_data/settings/site_banner.json');
-  $data['body'] = htmlspecialchars_decode($data['body']);
-  include('_templates/site-banner.tpl.php');
+  if (is_array($data)) {
+    $data['body'] = htmlspecialchars_decode($data['body']);
+    include('_templates/site-banner.tpl.php');
+  }
+
 }
 
 // Function used to render tag data from comma value.

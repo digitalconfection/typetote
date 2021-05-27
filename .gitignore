@@ -1,6 +1,7 @@
 # Core
 install.php
 dev.php
+multisite.php
 
 # For core development
 _data/*
