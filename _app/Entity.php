@@ -3,10 +3,10 @@
 class Entity
 {
 
-  private $entity_dir = 'content';
-  private $manifests_dir = 'manifests';
-  private $settings_dir = 'settings';
-  private $blocks_dir = 'blocks';
+  private $entity_dir = '/content';
+  private $manifests_dir = '/manifests';
+  private $settings_dir = '/settings';
+  private $blocks_dir = '/blocks';
 
   public function createFile($path, $data) {
     $file = fopen($path, 'w+');
@@ -29,21 +29,28 @@ class Entity
       $data = json_decode(file_get_contents($file), true);
       return $data;
     }
-  } 
+  }
+
+  public function setDataDirectory($name) {
+
+
+    return SiteInfo::getDataDir() . '/'. $name;
+
+  }
 
   // Alter here where the manfest is by entity type.
   public function createManifest($type)
   {
     // Set manifest info.
-    $this->makeDirectory($this->manifests_dir);
+    $this->makeDirectory($this->setDataDirectory('manifests'));
     
     $file_name =  $type . '_manifests.json';
-    $manifest_file = $this->manifests_dir . '/' . $file_name;
+    $manifest_file = $this->setDataDirectory('manifests') . '/' . $file_name;
 
     if ($type == 'block'){
-      $data_dir = $this->blocks_dir;
+      $data_dir = $this->setDataDirectory('blocks');
     } else {
-      $data_dir = $this->entity_dir;
+      $data_dir = $this->setDataDirectory('content');
     }
 
     // scan through entity and build array.
@@ -85,10 +92,10 @@ class Entity
 
     // Check if blocks otherwise create standered entity.
     if ($data['meta']['entity_type'] == 'block') {
-      $this->makeDirectory($this->blocks_dir);
+      $this->makeDirectory($this->setDataDirectory('blocks'));
       $block_file_name = str_replace(' ', '_', $data['title']);
       $block_file_name = strtolower('block_' . $block_file_name);
-      $block_file_path = $this->blocks_dir . '/' . $block_file_name . '.json';
+      $block_file_path = $this->setDataDirectory('blocks') . '/' . $block_file_name . '.json';
       $data['meta']['entity_id'] = $block_file_name;
       $data['meta']['entity_status'] = '';
       $this->createFile($block_file_path, $data);
@@ -98,11 +105,11 @@ class Entity
     else {
 
       // Make Dir.
-      $this->makeDirectory($this->entity_dir);
+      $this->makeDirectory($this->setDataDirectory('content'));
 
       // Set file path.
       $entity_file_name = $data['meta']['entity_id'];
-      $entity_file_path = $this->entity_dir . '/' . $entity_file_name . '.json';
+      $entity_file_path = $this->setDataDirectory('content') . '/' . $entity_file_name . '.json';
 
       // Set summary if not set.
       if (empty($data['summary'])) {
@@ -173,19 +180,19 @@ class Entity
     
     // Check if media asset.
     if (preg_match('/\..*/', $id)) {
-      $file = '_data/files/' . $id;
+      $file = SiteInfo::getDataDir() . '/files/' . $id;
       unlink($file);
     }
     // Check that its a block.
     else if (preg_match('/block_.*/', $id)){
-      $file = $this->blocks_dir . '/' . $id . '.json';
+      $file = $this->setDataDirectory('blocks') . '/' . $id . '.json';
       unlink($file);
       $this->createManifest('block');
       header('Location:' . SiteInfo::baseUrl() . 'admin?q=blocks');
     }
     // Otherwise delete entity.
     else {
-      $file = $this->entity_dir . '/' . $id . '.json';
+      $file = $this->setDataDirectory('content') . '/' . $id . '.json';
       unlink($file);
       $this->createManifest('content');
       header('Location:' . SiteInfo::baseUrl() . 'admin');
@@ -200,10 +207,10 @@ class Entity
     
     // Check if the id is prefaced with block.
     if (strpos($id, "block_") === 0) {
-      $dir = $this->blocks_dir;
+      $dir = $this->setDataDirectory('blocks');
     }
     else {
-      $dir = $this->entity_dir;
+      $dir = $this->setDataDirectory('content');
     }
     
     $file = $dir . '/' . $id . '.json';
@@ -344,9 +351,9 @@ class Entity
   /**
    * Used to create a defualt setting file. 
    */
-  public function saveSetting($dir, $file_name, $data) {
-    $this->makeDirectory($dir . '/' . $this->settings_dir);
-    $settings_file = $dir . '/' . $this->settings_dir . '/' . $file_name;
+  public function saveSetting($file_name, $data) {
+    $this->makeDirectory($this->setDataDirectory('settings'));
+    $settings_file = $this->setDataDirectory('settings') . '/' . $file_name;
 
     // For settings items, we need to go through the array and santize the data.
     foreach ($data as $key => $item) {
@@ -408,14 +415,14 @@ class Entity
       }
     }
 
-    $file = fopen('_data/sitemap.xml', 'w+');
+    $file = fopen(SiteInfo::getDataDir() . '/sitemap.xml', 'w+');
     fwrite($file ,$xml->asXML()); 
     fclose($file);
   }
 
   public function createRSS($manifest)
   {
-    $site_data = $this->readDataFile('_data/settings/site_info.json');
+    $site_data = $this->readDataFile(SiteInfo::getDataDir() . '/settings/site_info.json');
     $rss_header = '<?xml version="1.0" encoding="UTF-8"?><rss></rss>';
     $rss = new SimpleXMLElement($rss_header);
     $rss->addAttribute('version', '2.0');
@@ -438,7 +445,7 @@ class Entity
     }
 
     // Save File
-    $file = fopen('_data/rss.xml', 'w+');
+    $file = fopen(SiteInfo::getDataDir() . '/rss.xml', 'w+');
     fwrite($file ,$rss->asXML()); 
     fclose($file);
   }

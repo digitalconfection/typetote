@@ -43,7 +43,7 @@
           'type' => 'post',
           'category' => $site_data['blog_path'],
         );
-        $content_list = $content->renderEntityList('_data/manifests/content_manifests.json', $options);
+        $content_list = $content->renderEntityList( SiteInfo::getDataDir() . '/manifests/content_manifests.json', $options);
         $page_data['items'] = $content->paginate($content_list);
         render_templateList($page_data); 
       ?>

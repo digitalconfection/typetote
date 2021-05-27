@@ -15,28 +15,28 @@ $admin_content->setPath('admin', function() {
   if ($query->getQuery('q') == 'posts') {
     
     $page_data['sort'] = 'Post';
-    if (is_file('_data/manifests/content_manifests.json')) {
+    if (is_file(SiteInfo::getDataDir() . '/manifests/content_manifests.json')) {
       $options = array('type' => 'post');
-      $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/content_manifests.json', $options));
+      $page_data['items'] = $content->paginate($content->renderEntityList(SiteInfo::getDataDir() . '/manifests/content_manifests.json', $options));
     }
 
   } else if ($query->getQuery('q') == 'pages') {
     
     $page_data['sort'] = 'Page';
-    if (is_file('_data/manifests/content_manifests.json')) {
+    if (is_file(SiteInfo::getDataDir() . '/manifests/content_manifests.json')) {
       $options = array('type' => 'page');
-      $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/content_manifests.json', $options)); 
+      $page_data['items'] = $content->paginate($content->renderEntityList(SiteInfo::getDataDir() . '/manifests/content_manifests.json', $options)); 
     }
 
   } else if ($query->getQuery('q') == 'blocks') {
     
     $page_data['sort'] = 'Block';
-    if (is_file('_data/manifests/block_manifests.json')) {
-      $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/block_manifests.json'));
+    if (is_file(SiteInfo::getDataDir() . '/manifests/block_manifests.json')) {
+      $page_data['items'] = $content->paginate($content->renderEntityList(SiteInfo::getDataDir() . '/manifests/block_manifests.json'));
     }
   
   } else { 
-    $page_data['items'] = $content->paginate($content->renderEntityList('_data/manifests/content_manifests.json'));
+    $page_data['items'] = $content->paginate($content->renderEntityList(SiteInfo::getDataDir() . '/manifests/content_manifests.json'));
     $page_data['sort'] = 'All';
   }
 
@@ -112,7 +112,7 @@ $admin_delete->setQueryPath('admin/delete', function() {
     // Media, check if this is a possible media asset. 
     $media_check = basename($_SERVER['REQUEST_URI']);
     $media_check = str_replace('delete?q=', '', $media_check);
-    if (is_file('_data/files/'. $media_check)) {
+    if (is_file(SiteInfo::getDataDir() . '/files/'. $media_check)) {
       $content->deleteEntity($media_check);
       $path->goToPath('admin/media');
     }
@@ -206,7 +206,7 @@ $admin_category->setPath('admin/category', function() {
     header("Refresh:0");
   }
   
-  $page_data['categroy'] = $category->readDataFile('_data/settings/category.json');
+  $page_data['categroy'] = $category->readDataFile(SiteInfo::getDataDir() . '/settings/category.json');
   $page_data['assets'] = array(
     '_modules/admin/js/category.js'
   );
@@ -230,7 +230,7 @@ $admin_menus->setPath('admin/menu', function() {
     header("Refresh:0");
   }
 
-  $page_data['menu'] = $menu->readDataFile('_data/settings/menu.json');
+  $page_data['menu'] = $menu->readDataFile(SiteInfo::getDataDir() . '/settings/menu.json');
   $page_data['assets'] = array(
     '_modules/admin/js/menu.js'
   );
@@ -254,7 +254,7 @@ $site_banner->setPath('admin/site-banner', function() {
     header("Refresh:0");
   }
 
-  $page_data = $site_banner->readDataFile('_data/settings/site_banner.json');
+  $page_data = $site_banner->readDataFile(SiteInfo::getDataDir() . '/settings/site_banner.json');
   $page_data['assets'] = array(
     '_modules/admin/js/quill.min.js',
     '_modules/admin/_theme/css/quill.snow.css',
@@ -284,7 +284,7 @@ $users->setPath('admin/users', function() {
   }
   $template = new Template();
   // $template->renderModuleJs('admin/js/user.js');
-  $page_data['users'] = $category->readDataFile('_data/settings/users.json');
+  $page_data['users'] = $category->readDataFile(SiteInfo::getDataDir() . '/settings/users.json');
   $page_data['assets'] = array(
     '_modules/admin/js/user.js'
   );
@@ -317,7 +317,7 @@ $admin_settings->setPath('admin/settings', function() {
 
   $template = new Template();
   $page_content = $template->renderTemplateFile('_modules/admin', 'site-settings-form.tpl.php');
-  $page_data = $site_info->readDataFile('_data/settings/site_info.json');
+  $page_data = $site_info->readDataFile(SiteInfo::getDataDir() . '/settings/site_info.json');
 
   $custom_themes = array();
   $themes = preg_grep('/^([^.])/', scandir('_themes'));

@@ -21,7 +21,7 @@
     $site_info_data['sec_key_1'] = password_hash($_POST['sec_key_1'], PASSWORD_DEFAULT);
     $site_info_data['sec_key_2'] = password_hash($_POST['sec_key_2'], PASSWORD_DEFAULT);
     $site_info_data['settings_dir'] = SiteInfo::getDataDir();
-    $site_info->saveSetting(SiteInfo::getDataDir(), 'site_info.json', $site_info_data);
+    $site_info->saveSetting('site_info.json', $site_info_data);
 
     // Create menu.
     $menu_data[0]['name'] = 'Home';
@@ -30,7 +30,7 @@
     $menu_data[1]['name'] = 'Blog';
     $menu_data[1]['path'] = 'blog';
     $menu_data[1]['weight'] = '1';
-    $site_info->saveSetting(SiteInfo::getDataDir(), 'menu.json', $menu_data);
+    $site_info->saveSetting('menu.json', $menu_data);
     header('Location:' . SiteInfo::baseUrl());
   }
 ?>

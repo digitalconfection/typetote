@@ -19,10 +19,10 @@
         <div class="thumb-img" style="background-image: url('<?php echo SiteInfo::baseUrl() . '/_data/files/' . $file ?>');"></div>
           <br>
           <?php if ($page_data['embeded'] == 'yes') { ?>
-            <a onclick="placeFile('<?php echo SiteInfo::baseUrl() . '_data/files/' . $file ?>');" class="click"><i class="far fa-image"></i> Select</a>
+            <a onclick="placeFile('<?php echo SiteInfo::baseUrl() . SiteInfo::getDataDir() . '/files/' . $file ?>');" class="click"><i class="far fa-image"></i> Select</a>
           <?php } else { ?>
           <div class="thumbnail-link">
-            <a href="<?php echo SiteInfo::baseUrl() . '_data/files/' . $file ?>" target="_blank"><i class="far fa-image" title="View Asset"></i></a>
+            <a href="<?php echo SiteInfo::baseUrl() . SiteInfo::getDataDir() . '/files/' . $file ?>" target="_blank"><i class="far fa-image" title="View Asset"></i></a>
             <a href="<?php echo SiteInfo::baseUrl() . 'admin/delete?q=' . $file ?>"><i class="fas fa-ban" title="Delete Asset"></i></a>
           </div>
         <?php } ?>

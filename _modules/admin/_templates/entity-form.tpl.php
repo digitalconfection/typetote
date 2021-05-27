@@ -31,7 +31,7 @@
 
       <?php
         $category_data = new Entity();
-        $categories = $category_data->readDataFile('_data/settings/category.json');
+        $categories = $category_data->readDataFile(SiteInfo::getDataDir() . '/settings/category.json');
         $site_info = new SiteInfo();
         $site_data = $site_info->getSiteData();
       ?>
@@ -60,7 +60,7 @@
         <?php
           // render list of avalible tags.
           $tag_data = new Entity();
-          $tags = $tag_data->readDataFile('_data/manifests/content_manifests.json');
+          $tags = $tag_data->readDataFile(SiteInfo::getDataDir() . '/manifests/content_manifests.json');
           
           if ($tags) {
 
