@@ -7,7 +7,7 @@ class Media
 
   public function __construct()
   {
-    $this->file_path = '_data/files/';
+    $this->file_path = SiteInfo::getDataDir() . '/files/';
   }
 
   public function upload()

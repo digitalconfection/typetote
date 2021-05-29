@@ -16,7 +16,7 @@
   <?php foreach ($page_data['files'] as $file) { ?>
     <div class="thumbnail">
       <div class="page-well">
-        <div class="thumb-img" style="background-image: url('<?php echo SiteInfo::baseUrl() . '/_data/files/' . $file ?>');"></div>
+        <div class="thumb-img" style="background-image: url('<?php echo SiteInfo::baseUrl() . SiteInfo::getDataDir() . '/files/' . $file ?>');"></div>
           <br>
           <?php if ($page_data['embeded'] == 'yes') { ?>
             <a onclick="placeFile('<?php echo SiteInfo::baseUrl() . SiteInfo::getDataDir() . '/files/' . $file ?>');" class="click"><i class="far fa-image"></i> Select</a>
