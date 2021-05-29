@@ -296,6 +296,24 @@ input[type=text].editor-title {
   text-align: right;
 }
 
+
+.theme-selection {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+.thubmnail--theme {
+  border-radius: 4px;
+  background-color: #E2E8EE;
+  padding: 1em;
+}
+
+.thubmnail--img {
+  width: 280px;
+  height: auto;
+}
+
 .thumb-img {
   background-size: cover;
   background-image: url();

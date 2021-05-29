@@ -29,7 +29,6 @@
       <textarea id="blog_description" name="blog_description" placeholder="Blog Description"><?php if (isset($page_data['blog_description'])) { echo $page_data['blog_description']; } ?></textarea>
       <div class="cc">Blog Path: <a href="<?php echo Siteinfo::baseUrl() . $page_data['blog_path']; ?>"><?php echo $page_data['blog_path']; ?></a></div>
 
-    
     </div>
   </div>
   </details>
@@ -38,16 +37,28 @@
 
   <div class="page-well">
   <details>
-    <summary><b>Theme Info:</b></summary>
+    <summary><b>Theme:</b></summary>
     <br>
-    <div class="page-content">
-      <label for="front_theme">Front Theme:</label>    
-      <select id="front_theme" name="front_theme" required>
+    <div class="page-content theme-selection">
+      <!-- <label for="front_theme">Front Theme:</label> -->
 
-      <!-- Logic here would need to look in two places. _themes and _modules/core/themes with the values
-        Then here we output the full path. 
-       -->
-       
+      <?php foreach ($page_data['themes'] as $theme) { ?>
+        <div class="thubmnail--theme">
+          <img class="thubmnail--img" src="<?php echo SiteInfo::baseUrl() . $theme['path']; ?>/thumbnail.png">
+          <!-- <div class="thubmnail-link"> -->
+            <?php if ($theme['path'] == $page_data['front_theme']) { ?>
+              <input type="radio" id="<?php echo $theme['name']; ?>" name="front_theme" value="<?php echo $theme['path']; ?>" checked>
+            <?php } else { ?>
+              <input type="radio" id="<?php echo $theme['name']; ?>" name="front_theme" value="<?php echo $theme['path']; ?>">
+            <?php } ?>
+            <label for="<?php echo $theme['name']; ?>"><?php echo ucfirst($theme['name']); ?></label>
+          <!-- </div> -->
+        </div>
+      <?php } ?>
+
+
+      <!-- <select id="front_theme" name="front_theme" required>
+      
         <?php foreach ($page_data['themes'] as $theme) { ?>
           <?php if ($theme['path'] == $page_data['front_theme']) { ?>
             <option value="<?php echo $theme['path']; ?>" selected="selected"><?php echo $theme['name']; ?></option>;
@@ -57,7 +68,7 @@
 
         <?php } ?>
     
-      </select>
+      </select> -->
     </div>
   </div>
   </details>
@@ -79,30 +90,30 @@
   <br>
   
   <div class="page-well">
-  <details>
-    <summary><b>Key Questions:</b></summary>
-    <br>
-    <p>The following questions are part of TypeTotes security login process. We recommend changing these answers over time. What you see are hashed values, and you do not need to remember what you wrote previously. If you do change these values you will need to log back in.</p>
-    <div class="page-content">
-      <label for="sec_key_1">Favorite food?</label>
-      <input id="sec_key_1" type="password" name="sec_key_1" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_1'])) { echo $page_data['sec_key_1']; } ?>" required>
-      
-      <label for="sec_key_2">What is the cutest animal?</label>
-      <input id="sec_key_2" type="password" name="sec_key_2" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_2'])) { echo $page_data['sec_key_2']; } ?>" required>
-      
-      </div>
-  </div>
+    <details>
+      <summary><b>Key Questions:</b></summary>
+      <br>
+      <p>The following questions are part of TypeTotes security login process. We recommend changing these answers over time. What you see are hashed values, and you do not need to remember what you wrote previously. If you do change these values you will need to log back in.</p>
+      <div class="page-content">
+        <label for="sec_key_1">Favorite food?</label>
+        <input id="sec_key_1" type="password" name="sec_key_1" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_1'])) { echo $page_data['sec_key_1']; } ?>" required>
+        
+        <label for="sec_key_2">What is the cutest animal?</label>
+        <input id="sec_key_2" type="password" name="sec_key_2" placeholder="Your Response." value="<?php if (isset($page_data['sec_key_2'])) { echo $page_data['sec_key_2']; } ?>" required>
+        
+        </div>
+    </div>
   </details>
   <br>
 
   <div class="page-well">
   <details>
     <summary><b>Headless CMS Settings</b></summary>
-      <br>
-      <p>Mark the checkbox below to enable headless mode and bypass the default template system.</p>
-      <input class="ie-form" type="checkbox" id="headless" name="headless" value="enabled" <?php if (isset($page_data['headless'])){ if ($page_data['headless'] == 'enabled') { echo 'checked'; } }?>>
-      <label class="ie-form" for="headless"> Enable headless mode</label><br>
-      </div>
+    <br>
+    <p>Mark the checkbox below to enable headless mode and bypass the default template system.</p>
+    <input class="ie-form" type="checkbox" id="headless" name="headless" value="enabled" <?php if (isset($page_data['headless'])){ if ($page_data['headless'] == 'enabled') { echo 'checked'; } }?>>
+    <label class="ie-form" for="headless"> Enable headless mode</label><br>
+    </div>
   </details>
   <?php } ?>
 
