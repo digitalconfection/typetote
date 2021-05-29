@@ -36,8 +36,8 @@
       <br>
       <hr>
       <br>
-      <a href="https://typetote.com" target="_blank">TypeTote: </a> <b><?php include ('version.txt'); ?></b><br><br>
-      Icons courtesy of: <a href="https://fontawesome.com">Font Awesome</a>.
+      TypeTote: <a href="https://typetote.com" target="_blank">v<?php include ('version.txt'); ?></a><br><br>
+      Icons courtesy of: <a href="https://fontawesome.com">Font Awesome</a>
     </div>
 
   <?php include('_modules/admin/_templates/session-notice.tpl.php'); ?>

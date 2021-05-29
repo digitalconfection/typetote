@@ -296,22 +296,25 @@ input[type=text].editor-title {
   text-align: right;
 }
 
-
 .theme-selection {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
-
-}
-.thubmnail--theme {
-  border-radius: 4px;
-  background-color: #E2E8EE;
-  padding: 1em;
 }
 
 .thubmnail--img {
   width: 280px;
+  border-radius: 8px;
   height: auto;
+  border: 1px solid #c6c5c5;
+  margin-bottom: .5rem;
+  padding: .5rem;
+  background-color: white;
+}
+
+.theme-info input  {
+  float: left;
+  margin-right: .5rem;
 }
 
 .thumb-img {

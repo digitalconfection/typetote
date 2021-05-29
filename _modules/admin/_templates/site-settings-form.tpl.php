@@ -39,36 +39,22 @@
   <details>
     <summary><b>Theme:</b></summary>
     <br>
-    <div class="page-content theme-selection">
-      <!-- <label for="front_theme">Front Theme:</label> -->
+    <div class=" theme-selection">
 
       <?php foreach ($page_data['themes'] as $theme) { ?>
         <div class="thubmnail--theme">
           <img class="thubmnail--img" src="<?php echo SiteInfo::baseUrl() . $theme['path']; ?>/thumbnail.png">
-          <!-- <div class="thubmnail-link"> -->
+          <div class="theme-info">
             <?php if ($theme['path'] == $page_data['front_theme']) { ?>
               <input type="radio" id="<?php echo $theme['name']; ?>" name="front_theme" value="<?php echo $theme['path']; ?>" checked>
             <?php } else { ?>
               <input type="radio" id="<?php echo $theme['name']; ?>" name="front_theme" value="<?php echo $theme['path']; ?>">
             <?php } ?>
             <label for="<?php echo $theme['name']; ?>"><?php echo ucfirst($theme['name']); ?></label>
-          <!-- </div> -->
+          </div>
         </div>
       <?php } ?>
 
-
-      <!-- <select id="front_theme" name="front_theme" required>
-      
-        <?php foreach ($page_data['themes'] as $theme) { ?>
-          <?php if ($theme['path'] == $page_data['front_theme']) { ?>
-            <option value="<?php echo $theme['path']; ?>" selected="selected"><?php echo $theme['name']; ?></option>;
-          <?php } else { ?>
-            <option value="<?php echo $theme['path']; ?>"><?php echo $theme['name']; ?></option>;
-          <?php } ?>
-
-        <?php } ?>
-    
-      </select> -->
     </div>
   </div>
   </details>
