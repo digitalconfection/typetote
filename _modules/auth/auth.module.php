@@ -108,18 +108,9 @@ if (isset($_SESSION[$session_name]['auth']['template'])
   } 
   else {
     $_SESSION[$session_name]['template']['admin_bar'] = 'yes';
-    include('admin.inc');
+    include(dirname(__FILE__) . '/../admin/admin.inc');
   }
 
 }
-
-$admin_content = new Route();
-$admin_content->setPath('admin/logout', function() {
-
-  $logout = new Auth();
-  $logout->logout();
-
-});
-
 
 ?>

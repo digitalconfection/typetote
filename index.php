@@ -1,4 +1,5 @@
 <?php
+
 // Unless explicitly set everything is a 404 (will need a dynamic page route)
 http_response_code(404);
 

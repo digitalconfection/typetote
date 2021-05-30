@@ -227,4 +227,13 @@ include '_inc/users.inc';
 // When user vists: /admin/settings
 include '_inc/settings.inc';
 
+
+$admin_content = new Route();
+$admin_content->setPath('admin/logout', function() {
+
+  $logout = new Auth();
+  $logout->logout();
+
+});
+
 ?>
