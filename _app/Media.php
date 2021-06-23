@@ -28,7 +28,8 @@ class Media
       'image/jpeg',
       'image/jpg',
       'image/gif',
-      'image/png'
+      'image/png',
+      'application/pdf'
     );
 
     if(in_array($_FILES['uploaded_file']['type'], $acceptable)) {

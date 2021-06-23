@@ -1,5 +1,7 @@
 <?php if (empty($page_data['utility_page']) or $page_data['utility_page'] !== 'yes') { ?>
-<h1><i class="far fa-image"></i> Images</h1>
+<h1><i class="far fa-image"></i> Media</h1>
+<p>Browse or upload new images and PDFs</p>
+
 <?php }?>
 
 <div id="upload" class="upload-thing hide">
@@ -7,7 +9,7 @@
   <button href="#" class="alt-btn" id="upload-cncl" onclick="toggle('upload');">Cancel</button>
 </div>
 
-<button onclick="toggle('upload');"><i class="fas fa-angle-double-up"></i> Upload Image</button>
+<button onclick="toggle('upload');"><i class="fas fa-angle-double-up"></i> Upload Media</button>
 <br>
 <br>
 

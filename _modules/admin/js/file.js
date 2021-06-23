@@ -16,11 +16,20 @@ function placeFile(file) {
 
   } else {
 
-    var img = `<br><span class="emb-image-well"><img src="`+ file + `" class="emb-image"></span>`;
-    window.top.document.execCommand("insertHTML",false, img);
-    window.top.document.execCommand("insertLineBreak");
+
+    // If user selects a file that is a pdf, show a link, otherwise embed an image.
+    let fileType = file.split('.').pop();
+    if (fileType == 'pdf') {
+      var fileName=prompt('Enter link text.');
+        var link = `<a href="`+ file + `" target="_blank">`+ fileName +`</a>`;
+        window.top.document.execCommand("insertHTML",false, link);
+    } 
+    else  {
+      var img = `<br><span class="emb-image-well"><img src="`+ file + `" class="emb-image"></span>`;
+      window.top.document.execCommand("insertHTML",false, img);
+      window.top.document.execCommand("insertLineBreak");
+    }
     window.top.document.getElementById("img_upload_well").classList.toggle("hide");
-    copyText('wysiwyg_editor', 'page_data');
   }
 
 }

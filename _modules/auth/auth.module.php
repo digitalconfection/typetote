@@ -113,4 +113,19 @@ if (isset($_SESSION[$session_name]['auth']['template'])
 
 }
 
+$admin_content = new Route();
+$admin_content->setPath('admin/logout', function() {
+  
+  
+  $session_name = md5(SiteInfo::baseUrl());
+  if (isset($_SESSION[$session_name]['auth']['login_time'])) {
+    $logout = new Auth();
+    $logout->logout();
+  } else  {
+    header('Location:' . SiteInfo::baseUrl());
+  }
+ 
+
+});
+
 ?>

@@ -233,12 +233,6 @@ if (file_exists(__DIR__ . '/_inc/settings.inc')) {
   include '_inc/settings.inc';
 }
 
-$admin_content = new Route();
-$admin_content->setPath('admin/logout', function() {
 
-  $logout = new Auth();
-  $logout->logout();
-
-});
 
 ?>
