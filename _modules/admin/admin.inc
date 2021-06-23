@@ -219,17 +219,17 @@ $site_banner->setPath('admin/site-banner', function() {
 });
 
 // Load Admin Media Routes
-if (is_file('_inc/media.inc')) {
+if (file_exists(__DIR__ . '/_inc/media.inc')) {
   include '_inc/media.inc';
-}
+} 
 
 // When user visits: /admin/users
-if (is_file('_inc/users.inc')) {
+if (file_exists(__DIR__ . '/_inc/users.inc')) {
   include '_inc/users.inc';
 }
 
 // When user vists: /admin/settings
-if (is_file('_inc/settings.inc')) {
+if (file_exists(__DIR__ . '/_inc/settings.inc')) {
   include '_inc/settings.inc';
 }
 
