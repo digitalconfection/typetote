@@ -419,7 +419,7 @@ class Entity
   public function createRSS($manifest)
   {
     $site_data = $this->readDataFile(SiteInfo::getDataDir() . '/settings/site_info.json');
-    $rss_header = '<?xml version="1.0" encoding="UTF-8"?><rss></rss>';
+    $rss_header = '<?xml?><rss></rss>';
     $rss = new SimpleXMLElement($rss_header);
     $rss->addAttribute('version', '2.0');
     
