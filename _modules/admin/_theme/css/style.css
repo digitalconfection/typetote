@@ -296,6 +296,15 @@ input[type=text].editor-title {
   text-align: right;
 }
 
+.file-name {
+  text-align: left;
+  font-size: small;
+}
+
+.file-icon {
+  background-position: center center;
+}
+
 .theme-selection {
   display: grid;
   grid-gap: 1rem;

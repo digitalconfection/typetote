@@ -14,7 +14,7 @@
       <ul>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/">Dashboard <i class="fas fa-home"></i></a></li>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/post">Publish <i class="fas fa-edit"></i></a></li>
-        <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/media">Media <i class="fas fa-image"></i></a></li>
+        <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/media">Media <i class="fas fa-photo-video"></i></a></li>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/category">Categories <i class="fas fa-book"></i></a></li>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/menu">Menu <i class="fas fa-link"></i></a></li>
         <li><a href="<?php echo SiteInfo::baseUrl(); ?>admin/site-banner"">Site Banner<i class="fas fa-bullhorn"></i></a></li>
